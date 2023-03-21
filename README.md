@@ -3,7 +3,7 @@ made for learning Next.js
 # How to run
 npm run dev
 # Made By
-### Devracos
+### Devracos SAS
 @alejandrodotor8
 @feliperaw
 @Santiagodoval
