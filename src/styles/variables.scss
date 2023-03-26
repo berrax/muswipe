@@ -1,0 +1,42 @@
+/* Breakpoints */
+$small: 440px; /*-------- Mobile devices*/
+$s-medium: 570px; /*-------- Tablet devices*/
+$medium: 768px;
+$large: 960px;
+$x-large: 1060px; /*-------- Desktop devices*/
+$xx-large: 1250px;
+$xxx-large: 1440px;
+$high-quality: 1700px;
+
+/*Font Size*/
+$font-title-big: 4rem;
+$font-title: 3rem;
+$font-subtitle: 2.2rem;
+$font-text-big: 1.8rem;
+$font-text-base: 1.6rem;
+$font-text-small: 1.4rem;
+
+/* Border Radius*/
+$rounded-sm: 0.125rem;
+$rounded: 0.25rem;
+$rounded-md: 0.375rem;
+$rounded-lg: 0.5rem;
+$rounded-xl: 0.75rem;
+$rounded-2xl: 1rem;
+$rounded-full: 50%;
+
+/*box shadow*/
+$shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+$shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+$shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+$shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+$shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+/* Z-index */
+$z-back: -1;
+$z-none: 0;
+$z-floor: 1;
+$z-medium: 10;
+$z-up: 50;
+$z-top: 100;
+$z-super: 200;
