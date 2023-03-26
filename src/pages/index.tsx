@@ -21,7 +21,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default function Component({ data }: any) {
 	const { data: session } = useSession();
-	const [isDarkMode, setIsDarkMode] = useDarkMode();
+	const { isDarkMode, toggle } = useDarkMode();
 	const [userInfo, setUserInfo] = useState<any>({});
 
 	const getUserInfo = async () => {
@@ -34,10 +34,6 @@ export default function Component({ data }: any) {
 		} catch (error) {
 			console.log(error);
 		}
-	};
-
-	const handleTheme = () => {
-		setIsDarkMode(!isDarkMode);
 	};
 
 	useEffect(() => {
@@ -64,7 +60,7 @@ export default function Component({ data }: any) {
 				<br />
 				<button onClick={() => signOut()}>Sign out</button>
 				<p>Actual theme: {isDarkMode ? 'dark' : 'light'}</p>
-				<button onClick={handleTheme}>Change Theme</button>
+				<button onClick={toggle}>Change Theme</button>
 			</>
 		);
 	}
