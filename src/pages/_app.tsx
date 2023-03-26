@@ -2,6 +2,7 @@ import React from 'react';
 import type { AppProps } from 'next/app';
 import { SessionProvider, useSession } from 'next-auth/react';
 import '@/styles/globals.scss';
+import { AuthProvider } from '@/hooks/useAuth';
 
 export default function MyApp({
 	Component,
@@ -9,13 +10,15 @@ export default function MyApp({
 }: AppProps) {
 	return (
 		<SessionProvider session={session}>
-			{Component.auth ? (
-				<Auth>
+			<AuthProvider>
+				{Component.auth ? (
+					<Auth>
+						<Component {...pageProps} />
+					</Auth>
+				) : (
 					<Component {...pageProps} />
-				</Auth>
-			) : (
-				<Component {...pageProps} />
-			)}
+				)}
+			</AuthProvider>
 		</SessionProvider>
 	);
 }
