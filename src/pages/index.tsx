@@ -3,6 +3,7 @@ import { GetStaticProps } from 'next';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import { SpotifyServices } from '../services/spotify/spotify.services';
 import { ContentfulServices } from '@/services/contentful/contentful.services';
+import useDarkMode from '@/hooks/useDarkMode';
 
 export const getStaticProps: GetStaticProps = async () => {
 	const query = `query {
@@ -20,6 +21,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default function Component({ data }: any) {
 	const { data: session } = useSession();
+	const [isDarkMode, setIsDarkMode] = useDarkMode();
 	const [userInfo, setUserInfo] = useState<any>({});
 
 	const getUserInfo = async () => {
@@ -32,6 +34,10 @@ export default function Component({ data }: any) {
 		} catch (error) {
 			console.log(error);
 		}
+	};
+
+	const handleTheme = () => {
+		setIsDarkMode(!isDarkMode);
 	};
 
 	useEffect(() => {
@@ -57,13 +63,9 @@ export default function Component({ data }: any) {
 				Signed in as {session?.user?.email}
 				<br />
 				<button onClick={() => signOut()}>Sign out</button>
+				<p>Actual theme: {isDarkMode ? 'dark' : 'light'}</p>
+				<button onClick={handleTheme}>Change Theme</button>
 			</>
 		);
 	}
-	return (
-		<>
-			Not signed in <br />
-			<button onClick={() => signIn()}>Sign in</button>
-		</>
-	);
 }

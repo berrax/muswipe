@@ -1,5 +1,16 @@
 @import './variables.scss', './mixins.scss';
 
+:root {
+	--color--background: #{$color-light};
+	--color--text: #{$color-dark};
+}
+
+[data-theme='dark'] {
+	--color--background: #{$color-dark};
+	--color--text: #{$color-light};
+}
+
 body {
-	background-color: antiquewhite;
+	background-color: var(--color--background);
+	color: var(--color--text);
 }

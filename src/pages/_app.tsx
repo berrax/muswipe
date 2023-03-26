@@ -1,7 +1,7 @@
 import React from 'react';
 import type { AppProps } from 'next/app';
-import '@/styles/globals.scss';
 import { SessionProvider, useSession } from 'next-auth/react';
+import '@/styles/globals.scss';
 
 export default function MyApp({
 	Component,
