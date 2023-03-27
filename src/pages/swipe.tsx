@@ -2,6 +2,7 @@ import { GetStaticProps } from 'next';
 import { ContentfulServices } from '@/services/contentful/contentful.services';
 import { useAuth } from '@/hooks/useAuth';
 import { signIn, signOut } from 'next-auth/react';
+import { PageLayout } from '@/components/templates/page-layout/page-layout';
 
 export const getStaticProps: GetStaticProps = async () => {
 	const { data, status } = await ContentfulServices.getTransversal('home-page');
@@ -14,7 +15,7 @@ export default function Component({ data }: any) {
 	const { isDarkTheme, toggleTheme, user } = useAuth();
 
 	return (
-		<>
+		<PageLayout isDarkTheme={isDarkTheme}>
 			<h1>SWIPE {user?.status}</h1>
 			{user?.email ? (
 				<>
@@ -31,6 +32,6 @@ export default function Component({ data }: any) {
 					<button onClick={() => signIn('spotify')}>Sign in</button>
 				</div>
 			)}
-		</>
+		</PageLayout>
 	);
 }

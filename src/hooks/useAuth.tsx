@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { SpotifyServices } from '@/services/spotify/spotify.services';
 import { useSession } from 'next-auth/react';
-import { IAuth, IPropsChildren, IUser } from '@/interfaces/auth.interface';
+import { IPropsChildren } from '@/interfaces/globals.interface';
+import { IAuth, IUser } from '@/interfaces/auth.interface';
 
 export const AuthContext = createContext<IAuth>(null as any);
 
