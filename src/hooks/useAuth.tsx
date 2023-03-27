@@ -14,7 +14,7 @@ export const useAuth = () => useContext(AuthContext);
 
 function useProviderAuth() {
 	const session = useSession();
-	const [user, setUser] = useState<IUser>();
+	const [user, setUser] = useState<IUser>({ status: session.status });
 
 	useEffect(() => {
 		if (session.status === 'authenticated') {
