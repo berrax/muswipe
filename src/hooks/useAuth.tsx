@@ -37,7 +37,7 @@ function useProviderAuth() {
 	const [isDarkTheme, setIsDarkTheme] = useState(false);
 	const toggleTheme = () => {
 		setIsDarkTheme(isDark => {
-			if (isDark) window.localStorage.removeItem('IS_DARK_THEME');
+			if (isDark) window.localStorage.setItem('IS_DARK_THEME', 'false');
 			else window.localStorage.setItem('IS_DARK_THEME', 'true');
 			return !isDark;
 		});
@@ -54,7 +54,7 @@ function useProviderAuth() {
 	useEffect(() => {
 		const isDarkThemeLS = window.localStorage.getItem('IS_DARK_THEME');
 		if (isDarkThemeLS) {
-			setIsDarkTheme(true);
+			setIsDarkTheme(isDarkThemeLS === 'true');
 		} else {
 			const prefersDarkTheme = window.matchMedia(
 				'(prefers-color-scheme: dark)',
