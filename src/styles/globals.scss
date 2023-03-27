@@ -1,6 +1,17 @@
 @import './variables.scss', './mixins.scss';
 
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
 :root {
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
 	--color--background: #{$color-light};
 	--color--text: #{$color-dark};
 }
@@ -10,7 +21,33 @@ html[data-theme='dark'] {
 	--color--text: #{$color-light};
 }
 
+html {
+	font-size: 62.5%;
+}
+
 body {
+	width: 100vw;
+	height: 100vh;
+	font-size: $font-text-base;
 	background-color: var(--color--background);
 	color: var(--color--text);
+}
+
+input {
+	border-style: none;
+	background: transparent;
+	outline: none;
+}
+button {
+	padding: 0;
+	background: none;
+	border: none;
+	outline: none;
+}
+a {
+	font-weight: 500;
+	text-decoration: inherit;
+}
+li {
+	list-style: none;
 }
