@@ -1,8 +1,10 @@
 import { PageLayout } from '@/components/templates/page-layout/page-layout';
+import { useTheme } from '@/hooks/useTheme';
 import { useAuth } from '../hooks/useAuth';
 
-export default function Component() {
-	const { isDarkTheme, user } = useAuth();
+export default function Playlist() {
+	const user = useAuth();
+	const { isDarkTheme } = useTheme();
 	if (!user?.email) {
 		return null;
 	}
@@ -14,3 +16,9 @@ export default function Component() {
 		</PageLayout>
 	);
 }
+
+Playlist.auth = {
+	role: 'user',
+	loading: <h1>Loading...</h1>,
+	unauthorized: '/',
+};

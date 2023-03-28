@@ -1,10 +1,16 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import {
+	createContext,
+	useContext,
+	useState,
+	useEffect,
+	useCallback,
+} from 'react';
 import { SpotifyServices } from '@/services/spotify/spotify.services';
-import { useSession } from 'next-auth/react';
 import { IPropsChildren } from '@/interfaces/globals.interface';
-import { IAuth, IUser } from '@/interfaces/auth.interface';
+import { IUser } from '@/interfaces/auth.interface';
+import { useQueryApi } from './useQueryApi';
 
-export const AuthContext = createContext<IAuth>(null as any);
+export const AuthContext = createContext<IUser | undefined>(null as any);
 
 export const AuthProvider = ({ children }: IPropsChildren) => {
 	const auth = useProviderAuth();
@@ -14,66 +20,23 @@ export const AuthProvider = ({ children }: IPropsChildren) => {
 export const useAuth = () => useContext(AuthContext);
 
 function useProviderAuth() {
-	const session = useSession();
-	const [user, setUser] = useState<IUser>({ status: session.status });
+	const [user, setUser] = useState<IUser>();
+
+	const query = useQueryApi({
+		queryKey: ['userData'],
+		service: SpotifyServices.getUserInfo,
+		staleTime: 1000 * 60,
+	});
 
 	useEffect(() => {
-		if (session.status === 'authenticated') {
-			getUserInfo()
-				.then(resp => {
-					if (resp) {
-						setUser({
-							email: resp?.email,
-							name: resp?.display_name,
-							status: 'authenticated',
-						});
-					}
-				})
-				.catch(() => setUser({ status: 'error' }));
-		} else {
-			setUser({ status: session.status });
+		if (query.data?.data?.email) {
+			setUser({
+				name: query.data.data.display_name,
+				email: query.data.data.email,
+				image: query.data.data.images?.[0].url,
+			});
 		}
-	}, [session]);
+	}, [query.data]);
 
-	const [isDarkTheme, setIsDarkTheme] = useState(false);
-	const toggleTheme = () => {
-		setIsDarkTheme(isDark => {
-			if (isDark) window.localStorage.setItem('IS_DARK_THEME', 'false');
-			else window.localStorage.setItem('IS_DARK_THEME', 'true');
-			return !isDark;
-		});
-	};
-
-	useEffect(() => {
-		if (isDarkTheme) {
-			document.documentElement.dataset.theme = 'dark';
-		} else {
-			document.documentElement.dataset.theme = 'light';
-		}
-	}, [isDarkTheme]);
-
-	useEffect(() => {
-		const isDarkThemeLS = window.localStorage.getItem('IS_DARK_THEME');
-		if (isDarkThemeLS) {
-			setIsDarkTheme(isDarkThemeLS === 'true');
-		} else {
-			const prefersDarkTheme = window.matchMedia(
-				'(prefers-color-scheme: dark)',
-			).matches;
-			setIsDarkTheme(prefersDarkTheme);
-		}
-	}, []);
-
-	return { user, isDarkTheme, toggleTheme };
+	return user;
 }
-
-const getUserInfo = async () => {
-	try {
-		const response = await SpotifyServices.getUserInfo();
-		if (response?.status === 200) {
-			return response.data;
-		}
-	} catch (error) {
-		console.log('UseAuth getUserInfo error: ', error);
-	}
-};

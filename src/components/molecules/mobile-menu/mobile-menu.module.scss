@@ -1,15 +1,14 @@
 @import '@/styles/variables.scss', '@/styles/mixins.scss';
 
 .wrapper {
-	width: 100%;
+	width: 90%;
 	position: fixed;
 	bottom: 0;
 	margin-bottom: 30px;
 	@include flex();
-
 	.container {
 		position: relative;
-		width: 80%;
+		width: 95%;
 		height: 50px;
 		border-radius: $rounded-2xl;
 		box-shadow: $shadow-sm;

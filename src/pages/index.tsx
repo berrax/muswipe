@@ -1,10 +1,10 @@
 import { GetStaticProps } from 'next';
 import { ContentfulServices } from '@/services/contentful/contentful.services';
-import { useAuth } from '@/hooks/useAuth';
-import { signIn, signOut } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { ITransversal } from '@/interfaces/contentful.interface';
+import { useTheme } from '../hooks/useTheme';
 
 export const getStaticProps: GetStaticProps = async () => {
 	try {
@@ -28,35 +28,30 @@ interface IProps {
 
 export default function Component({ data }: IProps) {
 	const router = useRouter();
-	const { isDarkTheme, toggleTheme, user } = useAuth();
+	const session = useSession();
+	const { isDarkTheme, toggleTheme } = useTheme();
 	console.log(data);
 	useEffect(() => {
-		if (user?.email) {
+		if (session.status === 'authenticated') {
 			router.push('/swipe');
 		}
-	}, [user]);
+	}, [session.status]);
+
+	if (!session) return null;
 
 	return (
 		<>
 			<h1>{data.tituloPrincipal}</h1>
-			<h2>{user?.status}</h2>
-			{user?.email ? (
-				<>
-					{user.email && <h3>Bienvenido {user.name || ''}</h3>}
-					Signed in as {user.email}
-					<br />
-					<button onClick={() => signOut()}>Sign out</button>
-					<p>Actual theme: {isDarkTheme ? 'dark' : 'light'}</p>
-					<button onClick={toggleTheme}>Change Theme</button>
-				</>
-			) : (
-				<div>
-					<h3>Not signed</h3>
-					<button onClick={() => signIn('spotify')}>
-						{data.accionPrincipal}
-					</button>
-				</div>
-			)}
+			<h2>{session?.status}</h2>
+
+			<div>
+				<h3>Not signed</h3>
+				<button onClick={() => signIn('spotify')}>
+					{data.accionPrincipal}
+				</button>
+				<p>Actual theme: {isDarkTheme ? 'dark' : 'light'}</p>
+				<button onClick={toggleTheme}>Change Theme</button>
+			</div>
 		</>
 	);
 }
