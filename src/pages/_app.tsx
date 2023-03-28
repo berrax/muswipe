@@ -1,11 +1,12 @@
 import React from 'react';
 import type { AppProps } from 'next/app';
 import { SessionProvider, useSession } from 'next-auth/react';
+import { Poppins } from 'next/font/google';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from '@/hooks/useAuth';
 import { ThemeProvider } from '@/hooks/useTheme';
-import { Poppins } from 'next/font/google';
+import { LoadingLottie } from '@/components/organisms/loading-lottie/loading-lottie';
 import '@/styles/globals.scss';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const poppins = Poppins({
 	weight: ['400', '500', '700'],
@@ -42,7 +43,7 @@ function Auth({ children }) {
 	const { status } = useSession({ required: true });
 
 	if (status === 'loading') {
-		return <div>Loading...</div>;
+		return <LoadingLottie />;
 	}
 
 	return <AuthProvider>{children}</AuthProvider>;

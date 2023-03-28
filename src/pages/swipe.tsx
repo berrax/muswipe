@@ -2,20 +2,18 @@ import { GetStaticProps } from 'next';
 import Image from 'next/image';
 import { ContentfulServices } from '@/services/contentful/contentful.services';
 import { useAuth } from '@/hooks/useAuth';
-import { signIn, signOut } from 'next-auth/react';
 import { PageLayout } from '@/components/templates/page-layout/page-layout';
 import { useTheme } from '@/hooks/useTheme';
 import { ITransversal } from '@/interfaces/contentful.interface';
 import styles from '@/styles/pages/swipe.module.scss';
 import { HandEmoji } from '@/assets/svg/hand';
-
 interface IProps {
 	data: ITransversal;
 }
 
 export default function Swipe({ data }: IProps) {
 	const user = useAuth();
-	const { isDarkTheme, toggleTheme } = useTheme();
+	const { isDarkTheme } = useTheme();
 
 	return (
 		<PageLayout isDarkTheme={isDarkTheme}>
@@ -38,7 +36,6 @@ export default function Swipe({ data }: IProps) {
 
 Swipe.auth = {
 	role: 'user',
-	loading: <h1>Loading...</h1>,
 	unauthorized: '/',
 };
 

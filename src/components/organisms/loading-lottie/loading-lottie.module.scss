@@ -1,0 +1,12 @@
+@import '@/styles/variables.scss', '@/styles/mixins.scss';
+
+.wrapper {
+	width: 100vw;
+	height: 100vh;
+	@include flex();
+}
+
+.container {
+	width: 250px;
+	height: 250px;
+}
