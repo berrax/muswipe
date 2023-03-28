@@ -21,9 +21,9 @@ export const useQueryApi = <T>({
 	const query = useQuery({
 		queryKey,
 		queryFn: service,
-		select,
+		//select,
 		staleTime,
-		placeholderData,
+		//placeholderData,
 		enabled,
 	});
 	return query as UseQueryResult<AxiosResponse<T>>;
