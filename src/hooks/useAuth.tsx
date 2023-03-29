@@ -9,6 +9,7 @@ import { SpotifyServices } from '@/services/spotify/spotify.services';
 import { IPropsChildren } from '@/interfaces/globals.interface';
 import { IUser } from '@/interfaces/auth.interface';
 import { useQueryApi } from './useQueryApi';
+import { oneHourInMS } from '@/constants/globals';
 
 export const AuthContext = createContext<IUser | undefined>(null as any);
 
@@ -25,15 +26,15 @@ function useProviderAuth() {
 	const query = useQueryApi({
 		queryKey: ['userData'],
 		service: SpotifyServices.getUserInfo,
-		staleTime: 1000 * 60,
+		staleTime: oneHourInMS,
 	});
 
 	useEffect(() => {
-		if (query.data?.data?.email) {
+		if (query.data?.email) {
 			setUser({
-				name: query.data.data.display_name,
-				email: query.data.data.email,
-				image: query.data.data.images?.[0].url,
+				name: query.data?.display_name,
+				email: query.data?.email,
+				image: query.data?.images?.[0].url,
 			});
 		}
 	}, [query.data]);
