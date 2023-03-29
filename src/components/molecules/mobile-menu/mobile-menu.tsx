@@ -19,7 +19,7 @@ export const MobileMenu = ({ isDark = false }: IProps) => {
 					className={`${styles.background} ${
 						isDark ? styles.background_dark : styles.background_light
 					}`}></div>
-				<div className={styles.icons}>
+				<nav className={styles.icons}>
 					<ul>
 						<li>
 							<Link href="/swipe" className={styles.link}>
@@ -46,7 +46,7 @@ export const MobileMenu = ({ isDark = false }: IProps) => {
 							</Link>
 						</li>
 					</ul>
-				</div>
+				</nav>
 			</div>
 		</div>
 	);

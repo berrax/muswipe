@@ -27,14 +27,6 @@ function useProviderTheme() {
 	return { isDarkTheme, toggleTheme };
 }
 
-function handleChangeDark(isDark: boolean) {
-	if (isDark) {
-		document.documentElement.dataset.theme = 'dark';
-	} else {
-		document.documentElement.dataset.theme = 'light';
-	}
-}
-
 function initIsDarkTheme() {
 	if (typeof window === 'undefined') return false;
 
@@ -50,4 +42,12 @@ function initIsDarkTheme() {
 	).matches;
 	handleChangeDark(prefersDarkTheme);
 	return prefersDarkTheme;
+}
+
+function handleChangeDark(isDark: boolean) {
+	if (isDark) {
+		document.documentElement.dataset.theme = 'dark';
+	} else {
+		document.documentElement.dataset.theme = 'light';
+	}
 }

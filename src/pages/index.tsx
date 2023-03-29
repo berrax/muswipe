@@ -30,7 +30,7 @@ export default function Component({ data }: IProps) {
 	const router = useRouter();
 	const session = useSession();
 	const { isDarkTheme, toggleTheme } = useTheme();
-	console.log(data);
+
 	useEffect(() => {
 		if (session.status === 'authenticated') {
 			router.push('/swipe');

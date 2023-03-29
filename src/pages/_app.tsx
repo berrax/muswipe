@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from '@/hooks/useAuth';
 import { ThemeProvider } from '@/hooks/useTheme';
 import { LoadingLottie } from '@/components/organisms/loading-lottie/loading-lottie';
+import { IPropsChildren } from '@/interfaces/globals.interface';
 import '@/styles/globals.scss';
 
 const poppins = Poppins({
@@ -39,7 +40,7 @@ export default function MyApp({
 	);
 }
 
-function Auth({ children }) {
+function Auth({ children }: IPropsChildren) {
 	const { status } = useSession({ required: true });
 
 	if (status === 'loading') {

@@ -5,3 +5,5 @@ export const color_gray_dark = '#5f5f5f';
 export const color_gray_light = '#c9c9c9';
 export const color_light = '#fff';
 export const color_dark = '#241848';
+
+export const oneHourInMS = 1000 * 60 * 60;

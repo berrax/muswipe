@@ -5,19 +5,35 @@ import { useAuth } from '@/hooks/useAuth';
 import { PageLayout } from '@/components/templates/page-layout/page-layout';
 import { useTheme } from '@/hooks/useTheme';
 import { ITransversal } from '@/interfaces/contentful.interface';
+import { ItemTrack } from '@/interfaces/spotify.interface';
 import styles from '@/styles/pages/swipe.module.scss';
 import { HandEmoji } from '@/assets/svg/hand';
+import { useQueryApi } from '../hooks/useQueryApi';
+import { SpotifyServices } from '@/services/spotify/spotify.services';
+import { Tracks } from '@/components/organisms/track/track';
+import { oneHourInMS } from '@/constants/globals';
 interface IProps {
 	data: ITransversal;
 }
-
+const GLOBAL_PLAYLIST_ID = '37i9dQZEVXbMDoHDwVN2tF';
 export default function Swipe({ data }: IProps) {
 	const user = useAuth();
 	const { isDarkTheme } = useTheme();
 
+	const query = useQueryApi({
+		queryKey: ['GlobalPlaylist'],
+		service: () => SpotifyServices.getPlaylistByID(GLOBAL_PLAYLIST_ID),
+		staleTime: oneHourInMS,
+	});
+
+	let tracks: ItemTrack[] = [];
+	if (query.data) {
+		tracks = query.data.tracks.items;
+	}
+
 	return (
 		<PageLayout isDarkTheme={isDarkTheme}>
-			<div className={styles.header}>
+			<header className={styles.header}>
 				<Image
 					src={user?.image || data.imagenPrincipal?.url!}
 					alt="profile picture"
@@ -26,10 +42,13 @@ export default function Swipe({ data }: IProps) {
 					className={styles.profile_image}
 				/>
 				<h2 className={styles.header__title}>
-					{data.tituloPrincipal} <HandEmoji />,{'  '}
-					{user?.name}
+					{data.tituloPrincipal} <HandEmoji />
+					{user?.name ? `, ${user?.name}` : ''}
 				</h2>
-			</div>
+			</header>
+			<main className={styles.main}>
+				{query.data && <Tracks tracks={tracks} />}
+			</main>
 		</PageLayout>
 	);
 }
