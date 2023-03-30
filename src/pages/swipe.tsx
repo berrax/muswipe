@@ -6,12 +6,13 @@ import { PageLayout } from '@/components/templates/page-layout/page-layout';
 import { useTheme } from '@/hooks/useTheme';
 import { ITransversal } from '@/interfaces/contentful.interface';
 import { ItemTrack } from '@/interfaces/spotify.interface';
-import styles from '@/styles/pages/swipe.module.scss';
 import { HandEmoji } from '@/assets/svg/hand';
 import { useQueryApi } from '../hooks/useQueryApi';
 import { SpotifyServices } from '@/services/spotify/spotify.services';
 import { Tracks } from '@/components/organisms/track/track';
 import { oneHourInMS } from '@/constants/globals';
+import styles from '@/styles/pages/swipe.module.scss';
+
 interface IProps {
 	data: ITransversal;
 }
@@ -47,7 +48,7 @@ export default function Swipe({ data }: IProps) {
 				</h2>
 			</header>
 			<main className={styles.main}>
-				{query.data && <Tracks tracks={tracks} />}
+				{query.data && <Tracks _tracks={tracks} />}
 			</main>
 		</PageLayout>
 	);

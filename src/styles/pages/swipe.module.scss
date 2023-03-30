@@ -1,8 +1,7 @@
 @import '@/styles/variables.scss', '@/styles/mixins.scss';
 
 .header {
-	margin-top: 20px;
-	margin-left: 10px;
+	height: 10%;
 	@include flex($justify: flex-start);
 	.profile_image {
 		border-radius: $rounded-full;
@@ -15,5 +14,6 @@
 }
 
 .main {
-	margin: 30px 10px 0 10px;
+	height: 90%;
+	padding: 30px 10px 0 10px;
 }
