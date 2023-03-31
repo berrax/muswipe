@@ -1,20 +1,61 @@
 @import '@/styles/variables.scss', '@/styles/mixins.scss';
+$image-sm: 340px;
+$image-base: 400px;
 
-.images_container {
-	position: relative;
-	width: 100%;
-}
-
-.image_wrapper {
+.status {
 	position: absolute;
-	height: auto;
+	width: 100%;
+	z-index: $z-up;
+	@include flex();
+	&__icon {
+		position: absolute;
+		transition: all 0.2s ease-in-out;
+		opacity: 0;
+	}
+	&__nolike {
+	}
+	&__like {
+	}
 }
 
-.image_wrapper:nth-child(1) {
+.hate .status__nolike {
+	opacity: 0.7;
+	transform: scale(2);
+}
+
+.love .status__like {
+	opacity: 0.7;
+	transform: scale(2);
+}
+
+.cards {
+	width: $image-sm;
+	height: $image-sm;
+	position: relative;
+	z-index: $z-medium;
+	@include from($small) {
+		width: $image-base;
+		height: $image-base;
+	}
+}
+
+.card {
+	display: inline-block;
+	position: absolute;
+	width: inherit;
+	height: inherit;
+	will-change: transform;
+	transition: all 0.3s ease-in-out;
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
+	cursor: grab;
+}
+
+.card:nth-child(1) {
 	width: 100%;
 }
 
-.image_wrapper:nth-child(2) {
+.card:nth-child(2) {
 	top: -10px;
 	width: 90%;
 	right: 0;
@@ -23,7 +64,7 @@
 	}
 }
 
-.image_wrapper:nth-child(3) {
+.card:nth-child(3) {
 	top: -20px;
 	width: 80%;
 	right: 0;
@@ -32,15 +73,16 @@
 	}
 }
 
-.image {
+.card__image {
 	width: 100%;
-	height: auto;
+	height: 100%;
 	box-shadow: $shadow;
 	border-radius: $rounded-4xl;
 }
 
 .info_wrapper {
-	margin: 20px;
+	width: 100%;
+	padding: 20px 20px 0 20px;
 	.info_title_container {
 		margin-bottom: 10px;
 		@include flex($wrap: wrap, $justify: space-between);
@@ -77,6 +119,7 @@
 }
 
 .buttons_wrapper {
+	margin-top: 20px;
 	@include flex($justify: center, $wrap: wrap);
 }
 

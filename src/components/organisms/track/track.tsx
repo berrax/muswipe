@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { ItemTrack } from '@/interfaces/spotify.interface';
 import { useQueryApi } from '@/hooks/useQueryApi';
@@ -14,8 +14,6 @@ interface IProps {
 
 export const Tracks = ({ _tracks }: IProps) => {
 	const [tracks, setTracks] = useState(_tracks);
-	const [imageHeight, setImageHeight] = useState(0);
-	const imagenRef = useRef<HTMLButtonElement>(null);
 
 	const queryArtist = useQueryApi({
 		queryKey: ['Artist', tracks[0].track.id],
@@ -37,33 +35,32 @@ export const Tracks = ({ _tracks }: IProps) => {
 		return copy;
 	};
 
-	useEffect(() => {
-		if (imagenRef.current) {
-			setImageHeight(imagenRef.current.clientHeight);
-		}
-	}, [imagenRef.current]);
-
 	return (
 		<>
-			<div
-				className={styles.images_container}
-				style={{ height: imageHeight || imagenRef.current?.clientHeight }}>
+			<div className={styles.cards}>
 				{tracks.slice(0, 3).map((track, index) => (
 					<button
 						style={{ zIndex: 3 - index }}
-						ref={index === 0 ? imagenRef : null}
-						className={styles.image_wrapper}
+						className={styles.card}
 						key={track.track.id}>
 						<Image
 							src={track.track.album.images[0].url}
 							alt="profile picture"
 							width={track.track.album.images[0].width}
 							height={track.track.album.images[0].height}
-							className={styles.image}
+							className={styles.card__image}
 							priority
 						/>
 					</button>
 				))}
+				<div className={styles.status}>
+					<div className={`${styles.status__icon} ${styles.status__nolike}`}>
+						<NoLike />
+					</div>
+					<div className={`${styles.status__icon} ${styles.status__nolike}`}>
+						<Like />
+					</div>
+				</div>
 			</div>
 			<div className={styles.info_wrapper}>
 				<div className={styles.info_title_container}>
@@ -86,14 +83,14 @@ export const Tracks = ({ _tracks }: IProps) => {
 				<br />
 				<span className={styles.info_subtitle}>Album</span>
 				<span className={styles.info_text}>{tracks[0].track.album.name}</span>
-			</div>
-			<div className={styles.buttons_wrapper}>
-				<button onClick={handleDisLike} className={styles.button}>
-					<NoLike />
-				</button>
-				<button onClick={handleLike} className={styles.button}>
-					<Like />
-				</button>
+				<div className={styles.buttons_wrapper}>
+					<button onClick={handleDisLike} className={styles.button}>
+						<NoLike />
+					</button>
+					<button onClick={handleLike} className={styles.button}>
+						<Like />
+					</button>
+				</div>
 			</div>
 		</>
 	);

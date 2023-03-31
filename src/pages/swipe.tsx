@@ -34,22 +34,24 @@ export default function Swipe({ data }: IProps) {
 
 	return (
 		<PageLayout isDarkTheme={isDarkTheme}>
-			<header className={styles.header}>
-				<Image
-					src={user?.image || data.imagenPrincipal?.url!}
-					alt="profile picture"
-					width={30}
-					height={30}
-					className={styles.profile_image}
-				/>
-				<h2 className={styles.header__title}>
-					{data.tituloPrincipal} <HandEmoji />
-					{user?.name ? `, ${user?.name}` : ''}
-				</h2>
-			</header>
-			<main className={styles.main}>
-				{query.data && <Tracks _tracks={tracks} />}
-			</main>
+			<div className={styles.pageContent}>
+				<header className={styles.header}>
+					<Image
+						src={user?.image || data.imagenPrincipal?.url!}
+						alt="profile picture"
+						width={30}
+						height={30}
+						className={styles.profile_image}
+					/>
+					<h2 className={styles.header__title}>
+						{data.tituloPrincipal} <HandEmoji />
+						{user?.name ? `, ${user?.name}` : ''}
+					</h2>
+				</header>
+				<main className={styles.main}>
+					{query.data && <Tracks _tracks={tracks} />}
+				</main>
+			</div>
 		</PageLayout>
 	);
 }
