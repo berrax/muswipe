@@ -1,6 +1,6 @@
 @import '@/styles/variables.scss', '@/styles/mixins.scss';
-$image-sm: 340px;
-$image-base: 400px;
+$image-sm: 300px;
+$image-base: 340px;
 
 .status {
 	position: absolute;
@@ -82,7 +82,10 @@ $image-base: 400px;
 
 .info_wrapper {
 	width: 100%;
-	padding: 20px 20px 0 20px;
+	padding: 20px 10px 0 10px;
+	@include from($small) {
+		padding: 20px 20px 0 20px;
+	}
 	.info_title_container {
 		margin-bottom: 10px;
 		@include flex($wrap: wrap, $justify: space-between);
