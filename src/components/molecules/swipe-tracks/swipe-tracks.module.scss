@@ -1,0 +1,33 @@
+@import '@/styles/variables.scss', '@/styles/mixins.scss';
+$image-sm: 300px;
+$image-base: 340px;
+
+.cards {
+	@include flex();
+	width: $image-sm;
+	height: $image-sm;
+	position: relative;
+	z-index: $z-medium;
+	@include from($small) {
+		width: $image-base;
+		height: $image-base;
+	}
+}
+
+.status {
+	position: absolute;
+	width: 70px;
+	height: 70px;
+	z-index: $z-up;
+
+	&__icon {
+		pointer-events: none;
+		position: absolute;
+		transition: all 0.2s ease-in-out;
+		opacity: 0;
+	}
+	&__icon.isMoving {
+		opacity: 0.7;
+		transform: scale(3);
+	}
+}

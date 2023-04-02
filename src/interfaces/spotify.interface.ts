@@ -33,7 +33,7 @@ export interface IPlaylist {
 	owner: Owner;
 	public: boolean;
 	snapshot_id: string;
-	tracks: Tracks;
+	tracks: ITracks;
 	type: string;
 	uri: string;
 }
@@ -64,7 +64,7 @@ export interface Owner {
 	name?: string;
 }
 
-export interface Tracks {
+export interface ITracks {
 	href: string;
 	limit: number;
 	next: string;
@@ -78,10 +78,10 @@ export interface ItemTrack {
 	added_at: string;
 	added_by: Owner;
 	is_local: boolean;
-	track: Track;
+	track: ITrack;
 }
 
-export interface Track {
+export interface ITrack {
 	album: Album;
 	artists: IArtist[];
 	available_markets: string[];

@@ -1,0 +1,52 @@
+@import '@/styles/variables.scss', '@/styles/mixins.scss';
+
+.info_wrapper {
+	width: 100%;
+	padding: 20px 10px 0 10px;
+	@include from($small) {
+		padding: 20px 20px 0 20px;
+	}
+
+	.info_title_container {
+		margin-bottom: 10px;
+		@include flex($wrap: wrap, $justify: space-between);
+		font-size: $font-text-sm;
+	}
+	.info_title {
+		font-size: $font-title-sm;
+	}
+	.date {
+		font-weight: 700;
+	}
+	.info_subtitle {
+		font-weight: 700;
+		font-size: $font-text-base;
+		padding-right: 10px;
+	}
+	.info_text {
+		font-size: $font-text-base;
+	}
+	.genres_container {
+		@include flex($justify: flex-start, $wrap: wrap);
+		margin-bottom: 10px;
+	}
+	.genre {
+		font-size: $font-text-mini;
+		font-weight: 500;
+		color: $color-light;
+		padding: 1px 10px;
+		border-radius: $rounded-2xl;
+		background-color: $color-pink;
+		margin-right: 10px;
+		margin-bottom: 5px;
+	}
+}
+
+.buttons_wrapper {
+	margin-top: 20px;
+	@include flex($justify: center, $wrap: wrap);
+}
+
+.button {
+	margin: 20px 20px 0 20px;
+}

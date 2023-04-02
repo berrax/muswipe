@@ -9,7 +9,7 @@ import { ItemTrack } from '@/interfaces/spotify.interface';
 import { HandEmoji } from '@/assets/svg/hand';
 import { useQueryApi } from '../hooks/useQueryApi';
 import { SpotifyServices } from '@/services/spotify/spotify.services';
-import { Tracks } from '@/components/organisms/track/track';
+import { TrackList } from '@/components/organisms/track-list/track-list';
 import { oneHourInMS } from '@/constants/globals';
 import styles from '@/styles/pages/swipe.module.scss';
 
@@ -49,7 +49,7 @@ export default function Swipe({ data }: IProps) {
 					</h2>
 				</header>
 				<main className={styles.main}>
-					{query.data && <Tracks _tracks={tracks} />}
+					{query.data && <TrackList tracks={tracks} />}
 				</main>
 			</div>
 		</PageLayout>
