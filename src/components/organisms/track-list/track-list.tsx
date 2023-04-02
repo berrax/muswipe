@@ -36,6 +36,7 @@ export const TrackList = ({ tracks }: IProps) => {
 		setCopyTracks(removeFirstItem(copyTracks));
 		clearTimeOut();
 	};
+
 	const handleDisLike = async () => {
 		setTransform(`translate(-${moveOutWidth}px, -100px) rotate(30deg)`);
 		await timeOut(320);

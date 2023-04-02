@@ -17,6 +17,18 @@
 	}
 }
 
+.card:nth-child(2) {
+	img {
+		backdrop-filter: blur(5px);
+	}
+}
+
+.card:nth-child(3) {
+	img {
+		backdrop-filter: blur(5px);
+	}
+}
+
 .moving.card {
 	transition: none;
 	cursor: -webkit-grabbing;
