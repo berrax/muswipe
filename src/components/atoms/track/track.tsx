@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from './track.module.scss';
 import { ITrack } from '@/interfaces/spotify.interface';
 import Hammer from 'hammerjs';
+import { ButtonPlayer } from '../button-player/button-player';
 
 interface IStatus {
 	isMoving: boolean;
@@ -86,6 +87,7 @@ interface IProps {
 export const Track = ({ track, style, next, setStatus, transform }: IProps) => {
 	const ref = useRef<HTMLDivElement>(null);
 	const [isMoving, setIsMoving] = useState(false);
+
 	useEffect(() => {
 		if (ref.current) {
 			handlePan(ref.current, setIsMoving, next, setStatus);
@@ -97,6 +99,7 @@ export const Track = ({ track, style, next, setStatus, transform }: IProps) => {
 			ref={ref}
 			style={{ ...style, transform: transform ? transform : style?.transform }}
 			className={`${isMoving ? styles.moving : null} ${styles.card}`}>
+			<ButtonPlayer audio={track.preview_url} />
 			<Image
 				src={track.album.images[0].url}
 				alt="profile picture"

@@ -5,8 +5,10 @@ import { Poppins } from 'next/font/google';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider } from '@/hooks/useAuth';
 import { ThemeProvider } from '@/hooks/useTheme';
+import { PlayerProvider } from '@/hooks/usePlayer';
 import { LoadingLottie } from '@/components/organisms/loading-lottie/loading-lottie';
 import { IPropsChildren } from '@/interfaces/globals.interface';
+import Player from '@/components/atoms/player/player';
 import '@/styles/globals.scss';
 
 const poppins = Poppins({
@@ -28,6 +30,7 @@ export default function MyApp({
 					<div className={poppins.className}>
 						{Component.auth ? (
 							<Auth>
+								<Player />
 								<Component {...pageProps} />
 							</Auth>
 						) : (
@@ -47,5 +50,9 @@ function Auth({ children }: IPropsChildren) {
 		return <LoadingLottie />;
 	}
 
-	return <AuthProvider>{children}</AuthProvider>;
+	return (
+		<AuthProvider>
+			<PlayerProvider>{children}</PlayerProvider>
+		</AuthProvider>
+	);
 }

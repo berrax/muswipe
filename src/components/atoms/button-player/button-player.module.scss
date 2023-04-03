@@ -1,0 +1,28 @@
+@import '@/styles/variables.scss', '@/styles/mixins.scss';
+
+.btn_player {
+	position: absolute;
+	z-index: $z-top;
+	bottom: 8px;
+	left: 12px;
+	@include flex($align: baseline);
+	padding: 10px;
+	div {
+		width: 7px;
+		height: 7px;
+		margin: 2px;
+		border-radius: 4px;
+		background-color: $color-light;
+	}
+}
+
+.btn_player.isReproducing div:nth-child(1) {
+	height: 17px;
+}
+.btn_player.isReproducing div:nth-child(2) {
+	height: 27px;
+}
+
+.btn_player.isReproducing div:nth-child(3) {
+	height: 22px;
+}

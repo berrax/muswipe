@@ -12,6 +12,7 @@ import { SpotifyServices } from '@/services/spotify/spotify.services';
 import { TrackList } from '@/components/organisms/track-list/track-list';
 import { oneHourInMS } from '@/constants/globals';
 import styles from '@/styles/pages/swipe.module.scss';
+import Head from 'next/head';
 
 interface IProps {
 	data: ITransversal;
@@ -34,6 +35,9 @@ export default function Swipe({ data }: IProps) {
 
 	return (
 		<PageLayout isDarkTheme={isDarkTheme}>
+			<Head>
+				<title>Muswipe - match</title>
+			</Head>
 			<div className={styles.pageContent}>
 				<header className={styles.header}>
 					<Image

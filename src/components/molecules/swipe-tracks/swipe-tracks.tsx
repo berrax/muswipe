@@ -1,9 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ItemTrack } from '@/interfaces/spotify.interface';
 import dynamic from 'next/dynamic';
 import { NoLike } from '@/assets/svg/no-like';
 import { Like } from '@/assets/svg/like';
 import styles from './swipe-tracks.module.scss';
+import { usePlayer } from '@/hooks/usePlayer';
 
 const Track = dynamic(
 	() => import('../../atoms/track/track').then(e => e.Track),
@@ -29,6 +30,13 @@ export const SwipeTracks = ({ tracks, next, transform }: IProps) => {
 		isLove: false,
 	});
 	const cardsRef = useRef<HTMLDivElement>(null);
+	const { isReproducing, setTrack } = usePlayer();
+
+	useEffect(() => {
+		if (isReproducing) {
+			setTrack(tracks[0].track.preview_url);
+		}
+	}, [tracks.length]);
 
 	return (
 		<div className={styles.cards} ref={cardsRef}>

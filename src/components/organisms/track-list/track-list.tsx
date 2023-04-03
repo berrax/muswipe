@@ -15,11 +15,12 @@ interface IProps {
 }
 
 export const TrackList = ({ tracks }: IProps) => {
-	const moveOutWidth =
-		typeof window !== 'undefined' ? document.body.clientWidth * 1.5 : 0;
 	const [copyTracks, setCopyTracks] = useState(tracks);
 	const [transform, setTransform] = useState<string | null>(null);
 	const { timeOut, clearTimeOut } = useTimeout();
+
+	const moveOutWidth =
+		typeof window !== 'undefined' ? document.body.clientWidth * 1.5 : 0;
 
 	const queryArtist = useQueryApi({
 		queryKey: ['Artist', copyTracks[0].track.id],
@@ -33,7 +34,7 @@ export const TrackList = ({ tracks }: IProps) => {
 		setTransform(`translate(${moveOutWidth}px, -100px) rotate(-30deg)`);
 		await timeOut(320);
 		setTransform(null);
-		setCopyTracks(removeFirstItem(copyTracks));
+		next();
 		clearTimeOut();
 	};
 
@@ -41,18 +42,17 @@ export const TrackList = ({ tracks }: IProps) => {
 		setTransform(`translate(-${moveOutWidth}px, -100px) rotate(30deg)`);
 		await timeOut(320);
 		setTransform(null);
-		setCopyTracks(removeFirstItem(copyTracks));
+		next();
 		clearTimeOut();
 	};
+
+	const next = () => {
+		setCopyTracks(actualTracks => removeFirstItem(actualTracks));
+	};
+
 	return (
 		<>
-			<SwipeTracks
-				tracks={copyTracks}
-				next={() =>
-					setCopyTracks(actualTracks => removeFirstItem(actualTracks))
-				}
-				transform={transform}
-			/>
+			<SwipeTracks tracks={copyTracks} next={next} transform={transform} />
 			<div className={styles.info_wrapper}>
 				<div className={styles.info_title_container}>
 					<h3 className={styles.info_title}>{copyTracks[0].track.name}</h3>

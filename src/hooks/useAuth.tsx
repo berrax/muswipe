@@ -1,10 +1,4 @@
-import {
-	createContext,
-	useContext,
-	useState,
-	useEffect,
-	useCallback,
-} from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { SpotifyServices } from '@/services/spotify/spotify.services';
 import { IPropsChildren } from '@/interfaces/globals.interface';
 import { IUser } from '@/interfaces/auth.interface';
@@ -17,7 +11,6 @@ export const AuthProvider = ({ children }: IPropsChildren) => {
 	const auth = useProviderAuth();
 	return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
-
 export const useAuth = () => useContext(AuthContext);
 
 function useProviderAuth() {
