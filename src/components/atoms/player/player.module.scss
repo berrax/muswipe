@@ -6,6 +6,7 @@
 	position: absolute;
 	&__content {
 		height: 100%;
+		will-change: width;
 		background-color: $color-purple;
 		transition: width 1s;
 	}
