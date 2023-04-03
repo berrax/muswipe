@@ -82,9 +82,17 @@ interface IProps {
 	next: () => void;
 	setStatus: (value: IStatus) => void;
 	transform: string | null;
+	isFirst: boolean;
 }
 
-export const Track = ({ track, style, next, setStatus, transform }: IProps) => {
+export const Track = ({
+	track,
+	style,
+	next,
+	setStatus,
+	transform,
+	isFirst,
+}: IProps) => {
 	const ref = useRef<HTMLDivElement>(null);
 	const [isMoving, setIsMoving] = useState(false);
 
@@ -99,7 +107,7 @@ export const Track = ({ track, style, next, setStatus, transform }: IProps) => {
 			ref={ref}
 			style={{ ...style, transform: transform ? transform : style?.transform }}
 			className={`${isMoving ? styles.moving : null} ${styles.card}`}>
-			<ButtonPlayer audio={track.preview_url} />
+			{isFirst && <ButtonPlayer audio={track.preview_url} />}
 			<Image
 				src={track.album.images[0].url}
 				alt="profile picture"

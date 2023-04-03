@@ -54,6 +54,7 @@ export const SwipeTracks = ({ tracks, next, transform }: IProps) => {
 					next={next}
 					setStatus={setStatus}
 					transform={index === 0 ? transform : null}
+					isFirst={index === 0}
 				/>
 			))}
 			<div className={styles.status}>
