@@ -24,6 +24,7 @@ $image-base: 340px;
 	&__icon {
 		pointer-events: none;
 		position: absolute;
+		will-change: transform;
 		transition: transform 0.2s ease-in-out;
 		opacity: 0;
 	}
