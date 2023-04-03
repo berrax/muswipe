@@ -19,6 +19,7 @@ $image-base: 340px;
 	width: 0px;
 	height: 0px;
 	z-index: $z-up;
+	@include flex();
 
 	&__icon {
 		pointer-events: none;
