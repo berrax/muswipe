@@ -16,8 +16,8 @@ $image-base: 340px;
 
 .status {
 	position: absolute;
-	width: 70px;
-	height: 70px;
+	width: 0px;
+	height: 0px;
 	z-index: $z-up;
 
 	&__icon {
