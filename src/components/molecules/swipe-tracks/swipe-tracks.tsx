@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ItemTrack } from '@/interfaces/spotify.interface';
 import dynamic from 'next/dynamic';
+import { usePlayer } from '@/hooks/usePlayer';
 import { NoLike } from '@/assets/svg/no-like';
 import { Like } from '@/assets/svg/like';
 import styles from './swipe-tracks.module.scss';
-import { usePlayer } from '@/hooks/usePlayer';
 
 const Track = dynamic(
 	() => import('../../atoms/track/track').then(e => e.Track),

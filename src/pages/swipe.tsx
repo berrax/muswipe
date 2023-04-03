@@ -1,5 +1,6 @@
 import { GetStaticProps } from 'next';
 import Image from 'next/image';
+import Head from 'next/head';
 import { ContentfulServices } from '@/services/contentful/contentful.services';
 import { useAuth } from '@/hooks/useAuth';
 import { PageLayout } from '@/components/templates/page-layout/page-layout';
@@ -7,12 +8,11 @@ import { useTheme } from '@/hooks/useTheme';
 import { ITransversal } from '@/interfaces/contentful.interface';
 import { ItemTrack } from '@/interfaces/spotify.interface';
 import { HandEmoji } from '@/assets/svg/hand';
-import { useQueryApi } from '../hooks/useQueryApi';
+import { useQueryApi } from '@/hooks/useQueryApi';
 import { SpotifyServices } from '@/services/spotify/spotify.services';
 import { TrackList } from '@/components/organisms/track-list/track-list';
 import { oneHourInMS } from '@/constants/globals';
 import styles from '@/styles/pages/swipe.module.scss';
-import Head from 'next/head';
 
 interface IProps {
 	data: ITransversal;

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { ItemTrack } from '@/interfaces/spotify.interface';
 import { useQueryApi } from '@/hooks/useQueryApi';
+import useTimeout from '@/hooks/useTimeOut';
 import { SpotifyServices } from '@/services/spotify/spotify.services';
 import { oneHourInMS } from '@/constants/globals';
-import { NoLike } from '@/assets/svg/no-like';
-import { Like } from '@/assets/svg/like';
 import { SwipeTracks } from '@/components/molecules/swipe-tracks/swipe-tracks';
 import { removeFirstItem } from '@/utils/tracks';
+import { Like } from '@/assets/svg/like';
+import { NoLike } from '@/assets/svg/no-like';
 import styles from './track-list.module.scss';
-import useTimeout from '@/hooks/useTimeOut';
 
 interface IProps {
 	tracks: ItemTrack[];
@@ -56,7 +56,9 @@ export const TrackList = ({ tracks }: IProps) => {
 			<div className={styles.info_wrapper}>
 				<div className={styles.info_title_container}>
 					<h3 className={styles.info_title}>{copyTracks[0].track.name}</h3>
-					<span className={styles.date}>2022</span>
+					<span className={styles.date}>
+						{copyTracks[0].track.album.release_date.slice(0, 4)}
+					</span>
 				</div>
 				{queryArtist.data && (
 					<div className={styles.genres_container}>
