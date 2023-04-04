@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { ITransversal } from '@/interfaces/contentful.interface';
 import { useTheme } from '../hooks/useTheme';
+import Head from 'next/head';
 
 export const getStaticProps: GetStaticProps = async () => {
 	try {
@@ -41,6 +42,9 @@ export default function Component({ data }: IProps) {
 
 	return (
 		<>
+			<Head>
+				<title>Muswipe - login to start</title>
+			</Head>
 			<h1>{data.tituloPrincipal}</h1>
 			<h2>{session?.status}</h2>
 

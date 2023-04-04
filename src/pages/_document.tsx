@@ -6,7 +6,6 @@ export default function Document() {
 		<Html>
 			<Head>
 				<link rel="shortcut icon" href="/favicon.ico" />
-				<title>Muswipe</title>
 			</Head>
 			<body>
 				<Main />

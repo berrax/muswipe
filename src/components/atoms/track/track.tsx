@@ -110,7 +110,7 @@ export const Track = ({
 			{isFirst && <ButtonPlayer audio={track.preview_url} />}
 			<Image
 				src={track.album.images[0].url}
-				alt="profile picture"
+				alt="song album picture"
 				width={track.album.images[0].width}
 				height={track.album.images[0].height}
 				className={styles.card__image}

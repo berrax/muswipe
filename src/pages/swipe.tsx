@@ -39,6 +39,7 @@ export default function Swipe({ data }: IProps) {
 		<PageLayout isDarkTheme={isDarkTheme}>
 			<Head>
 				<title>Muswipe - match</title>
+				<meta name="robots" content="noindex" />
 			</Head>
 			<div className={styles.pageContent}>
 				<header className={styles.header}>
