@@ -55,28 +55,7 @@ export default function Swipe({ data }: IProps) {
 					</h2>
 				</header>
 				<main className={styles.main}>
-					{query.data ? (
-						<TrackList tracks={tracks} />
-					) : (
-						<>
-							<Skeleton className={styles.skeleton_tracks} />
-							<Skeleton className={styles.skeleton_container}>
-								<SkeletonElement
-									isLight
-									height="20px"
-									style={{ marginTop: '10px' }}
-								/>
-								<SkeletonElement
-									isLight
-									height="18px"
-									width="70px"
-									style={{ margin: '20px 0', borderRadius: '15px' }}
-								/>
-								<SkeletonElement isLight width="80%" />
-								<SkeletonElement isLight width="80%" />
-							</Skeleton>
-						</>
-					)}
+					{query.data ? <TrackList tracks={tracks} /> : <SkeletonSwipe />}
 				</main>
 			</div>
 		</PageLayout>
@@ -103,3 +82,34 @@ export const getStaticProps: GetStaticProps = async () => {
 		};
 	}
 };
+
+const SkeletonSwipe = () => (
+	<>
+		<Skeleton className={styles.skeleton_tracks} />
+		<Skeleton className={styles.skeleton_container}>
+			<SkeletonElement isLight height="20px" style={{ marginTop: '10px' }} />
+			<SkeletonElement
+				isLight
+				height="18px"
+				width="70px"
+				style={{ margin: '20px 0', borderRadius: '15px' }}
+			/>
+			<SkeletonElement isLight width="80%" />
+			<SkeletonElement isLight width="80%" />
+		</Skeleton>
+		<Skeleton className={styles.skeleton_btn}>
+			<SkeletonElement
+				isLight
+				width="60px"
+				height="60px"
+				style={{ margin: '0 20px', borderRadius: '30px' }}
+			/>
+			<SkeletonElement
+				isLight
+				width="60px"
+				height="60px"
+				style={{ margin: '0 20px', borderRadius: '30px' }}
+			/>
+		</Skeleton>
+	</>
+);

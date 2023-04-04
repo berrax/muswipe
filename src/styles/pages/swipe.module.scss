@@ -43,3 +43,7 @@
 	width: calc(100% - 40px);
 	margin: 20px;
 }
+.skeleton_btn {
+	margin-top: 5px;
+	@include flex();
+}
