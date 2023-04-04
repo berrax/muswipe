@@ -97,7 +97,13 @@ export const TrackList = ({ tracks }: IProps) => {
 					<button onClick={handleDisLike} className={styles.button}>
 						<NoLike />
 					</button>
-					<button onClick={handleLike} className={styles.button}>
+					<button
+						onClick={handleLike}
+						className={`${styles.button} ${
+							tracks.length - 2 < copyTracks.length
+								? styles.button_wiggle
+								: null
+						}`}>
 						<Like />
 					</button>
 				</div>

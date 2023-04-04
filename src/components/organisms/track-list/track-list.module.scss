@@ -50,3 +50,34 @@
 .button {
 	margin: 20px 20px 0 20px;
 }
+
+.button_wiggle {
+	animation: wiggle 4s linear 5s infinite;
+}
+
+@keyframes wiggle {
+	0%,
+	3% {
+		transform: rotateZ(0) scale(1);
+	}
+	7% {
+		transform: rotateZ(-15deg);
+	}
+	10% {
+		transform: rotateZ(10deg);
+	}
+	12% {
+		transform: rotateZ(-10deg);
+	}
+	15% {
+		transform: rotateZ(6deg);
+	}
+	17% {
+		transform: rotateZ(-4deg) scale(1.1);
+	}
+	25%,
+	40%,
+	100% {
+		transform: rotateZ(0) scale(1);
+	}
+}
