@@ -33,11 +33,11 @@ export default function Player() {
 	return (
 		<>
 			{isReproducing && (
-				<progress className={styles.progress_bar}>
+				<div className={styles.progress_bar}>
 					<div
 						style={{ width: progressBar + '%' }}
 						className={styles.progress_bar__content}></div>
-				</progress>
+				</div>
 			)}
 			<audio
 				ref={audio}
