@@ -12,7 +12,9 @@ import { useQueryApi } from '@/hooks/useQueryApi';
 import { SpotifyServices } from '@/services/spotify/spotify.services';
 import { TrackList } from '@/components/organisms/track-list/track-list';
 import { oneHourInMS } from '@/constants/globals';
+import { Skeleton } from '@/components/molecules/skeleton/skeleton';
 import styles from '@/styles/pages/swipe.module.scss';
+import { SkeletonElement } from '@/components/atoms/skeleton/skeleton-element';
 
 interface IProps {
 	data: ITransversal;
@@ -53,7 +55,28 @@ export default function Swipe({ data }: IProps) {
 					</h2>
 				</header>
 				<main className={styles.main}>
-					{query.data && <TrackList tracks={tracks} />}
+					{query.data ? (
+						<TrackList tracks={tracks} />
+					) : (
+						<>
+							<Skeleton className={styles.skeleton_tracks} />
+							<Skeleton className={styles.skeleton_container}>
+								<SkeletonElement
+									isLight
+									height="20px"
+									style={{ marginTop: '10px' }}
+								/>
+								<SkeletonElement
+									isLight
+									height="18px"
+									width="70px"
+									style={{ margin: '20px 0', borderRadius: '15px' }}
+								/>
+								<SkeletonElement isLight width="80%" />
+								<SkeletonElement isLight width="80%" />
+							</Skeleton>
+						</>
+					)}
 				</main>
 			</div>
 		</PageLayout>

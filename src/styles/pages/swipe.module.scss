@@ -26,3 +26,20 @@
 	position: relative;
 	@include flex($wrap: wrap, $direction: column);
 }
+
+.skeleton_tracks {
+	border-radius: $rounded-4xl;
+	background-color: $color-purple-skeleton-light;
+	@include flex();
+	width: $size-image-sm;
+	height: $size-image-sm;
+	@include from($small) {
+		width: $size-image-base;
+		height: $size-image-base;
+	}
+}
+
+.skeleton_container {
+	width: calc(100% - 40px);
+	margin: 20px;
+}

@@ -1,0 +1,6 @@
+@import '@/styles/variables.scss', '@/styles/mixins.scss';
+.skeleton {
+	border-radius: $rounded-lg;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}

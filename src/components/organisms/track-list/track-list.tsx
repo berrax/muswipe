@@ -9,6 +9,8 @@ import { removeFirstItem } from '@/utils/tracks';
 import { Like } from '@/assets/svg/like';
 import { NoLike } from '@/assets/svg/no-like';
 import styles from './track-list.module.scss';
+import { Skeleton } from '@/components/molecules/skeleton/skeleton';
+import { SkeletonElement } from '@/components/atoms/skeleton/skeleton-element';
 
 interface IProps {
 	tracks: ItemTrack[];
@@ -60,7 +62,7 @@ export const TrackList = ({ tracks }: IProps) => {
 						{copyTracks[0].track.album.release_date.slice(0, 4)}
 					</span>
 				</div>
-				{queryArtist.data && (
+				{queryArtist.data ? (
 					<div className={styles.genres_container}>
 						{queryArtist.data.genres.map(genre => (
 							<span key={genre} className={styles.genre}>
@@ -68,6 +70,19 @@ export const TrackList = ({ tracks }: IProps) => {
 							</span>
 						))}
 					</div>
+				) : (
+					<Skeleton>
+						<SkeletonElement
+							isLight
+							height="18px"
+							width="70px"
+							style={{
+								marginTop: '2px',
+								marginBottom: '10px',
+								borderRadius: '15px',
+							}}
+						/>
+					</Skeleton>
 				)}
 				<span className={styles.info_subtitle}>Artist</span>
 				<span className={styles.info_text}>

@@ -6,4 +6,7 @@ export const color_gray_light = '#c9c9c9';
 export const color_light = '#fff';
 export const color_dark = '#241848';
 
+export const color_purple_skeleton = '#e2e2f1';
+export const color_purple_skeleton_light = '#efeff9';
+
 export const oneHourInMS = 1000 * 60 * 60;

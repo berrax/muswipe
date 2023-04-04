@@ -1,16 +1,14 @@
 @import '@/styles/variables.scss', '@/styles/mixins.scss';
-$image-sm: 300px;
-$image-base: 340px;
 
 .cards {
 	@include flex();
-	width: $image-sm;
-	height: $image-sm;
+	width: $size-image-sm;
+	height: $size-image-sm;
 	position: relative;
 	z-index: $z-medium;
 	@include from($small) {
-		width: $image-base;
-		height: $image-base;
+		width: $size-image-base;
+		height: $size-image-base;
 	}
 }
 
