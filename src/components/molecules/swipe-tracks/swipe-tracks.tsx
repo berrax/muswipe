@@ -39,7 +39,7 @@ export const SwipeTracks = ({ tracks, next, transform }: IProps) => {
 	}, [tracks.length]);
 
 	return (
-		<div className={styles.cards} ref={cardsRef}>
+		<section className={styles.cards} ref={cardsRef}>
 			{tracks.slice(0, 3).map((track, index) => (
 				<Track
 					track={track.track}
@@ -71,6 +71,6 @@ export const SwipeTracks = ({ tracks, next, transform }: IProps) => {
 					<Like />
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 };

@@ -49,10 +49,10 @@ export default function Swipe({ data }: IProps) {
 						height={30}
 						className={styles.profile_image}
 					/>
-					<h2 className={styles.header__title}>
+					<h1 className={styles.header__title}>
 						{data.tituloPrincipal} <HandEmoji />
 						{user?.name ? `, ${user?.name}` : ''}
-					</h2>
+					</h1>
 				</header>
 				<main className={styles.main}>
 					{query.data ? <TrackList tracks={tracks} /> : <SkeletonSwipe />}

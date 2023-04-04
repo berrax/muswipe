@@ -55,12 +55,12 @@ export const TrackList = ({ tracks }: IProps) => {
 	return (
 		<>
 			<SwipeTracks tracks={copyTracks} next={next} transform={transform} />
-			<div className={styles.info_wrapper}>
+			<section className={styles.info_wrapper}>
 				<div className={styles.info_title_container}>
 					<h3 className={styles.info_title}>{copyTracks[0].track.name}</h3>
-					<span className={styles.date}>
+					<time className={styles.date}>
 						{copyTracks[0].track.album.release_date.slice(0, 4)}
-					</span>
+					</time>
 				</div>
 				{queryArtist.data ? (
 					<div className={styles.genres_container}>
@@ -84,12 +84,12 @@ export const TrackList = ({ tracks }: IProps) => {
 						/>
 					</Skeleton>
 				)}
-				<span className={styles.info_subtitle}>Artist</span>
+				<strong className={styles.info_subtitle}>Artist</strong>
 				<span className={styles.info_text}>
 					{copyTracks[0].track.artists[0].name}
 				</span>
 				<br />
-				<span className={styles.info_subtitle}>Album</span>
+				<strong className={styles.info_subtitle}>Album</strong>
 				<span className={styles.info_text}>
 					{copyTracks[0].track.album.name}
 				</span>
@@ -107,7 +107,7 @@ export const TrackList = ({ tracks }: IProps) => {
 						<Like />
 					</button>
 				</div>
-			</div>
+			</section>
 		</>
 	);
 };

@@ -103,7 +103,7 @@ export const Track = ({
 	}, []);
 
 	return (
-		<div
+		<figure
 			ref={ref}
 			style={{ ...style, transform: transform ? transform : style?.transform }}
 			className={`${isMoving ? styles.moving : null} ${styles.card}`}>
@@ -116,6 +116,6 @@ export const Track = ({
 				className={styles.card__image}
 				priority
 			/>
-		</div>
+		</figure>
 	);
 };
