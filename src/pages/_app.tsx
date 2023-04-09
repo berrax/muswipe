@@ -81,5 +81,5 @@ function Auth({ children }: IPropsChildren) {
 		return <LoadingLottie />;
 	}
 
-	return children;
+	return <>{children}</>;
 }
