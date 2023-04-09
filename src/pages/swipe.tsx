@@ -2,7 +2,6 @@ import { GetStaticProps } from 'next';
 import Image from 'next/image';
 import Head from 'next/head';
 import { ContentfulServices } from '@/services/contentful/contentful.services';
-import { useAuth } from '@/hooks/useAuth';
 import { PageLayout } from '@/components/templates/page-layout/page-layout';
 import { useTheme } from '@/hooks/useTheme';
 import { ITransversal } from '@/interfaces/contentful.interface';
@@ -15,13 +14,14 @@ import { oneHourInMS } from '@/constants/globals';
 import { Skeleton } from '@/components/molecules/skeleton/skeleton';
 import styles from '@/styles/pages/swipe.module.scss';
 import { SkeletonElement } from '@/components/atoms/skeleton/skeleton-element';
+import { useAppSelector } from '@/hooks/reduxHooks';
 
 interface IProps {
 	data: ITransversal;
 }
 const GLOBAL_PLAYLIST_ID = '37i9dQZEVXbMDoHDwVN2tF';
 export default function Swipe({ data }: IProps) {
-	const user = useAuth();
+	const user = useAppSelector(state => state.user.value);
 	const { isDarkTheme } = useTheme();
 
 	const query = useQueryApi({

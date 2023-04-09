@@ -53,7 +53,6 @@ export default function Component({ data }: IProps) {
 				<button onClick={() => signIn('spotify')}>
 					{data.accionPrincipal}
 				</button>
-				<p>Actual theme: {isDarkTheme ? 'dark' : 'light'}</p>
 				<button onClick={toggleTheme}>Change Theme</button>
 			</div>
 		</>

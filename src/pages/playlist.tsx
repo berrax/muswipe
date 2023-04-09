@@ -1,9 +1,9 @@
 import { PageLayout } from '@/components/templates/page-layout/page-layout';
 import { useTheme } from '@/hooks/useTheme';
-import { useAuth } from '../hooks/useAuth';
+import { useAppSelector } from '@/hooks/reduxHooks';
 
 export default function Playlist() {
-	const user = useAuth();
+	const user = useAppSelector(state => state.user.value);
 	const { isDarkTheme } = useTheme();
 	if (!user?.email) {
 		return null;
