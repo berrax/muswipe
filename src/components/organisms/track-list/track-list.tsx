@@ -5,19 +5,22 @@ import useTimeout from '@/hooks/useTimeOut';
 import { SpotifyServices } from '@/services/spotify/spotify.services';
 import { oneHourInMS } from '@/constants/globals';
 import { SwipeTracks } from '@/components/molecules/swipe-tracks/swipe-tracks';
-import { removeFirstItem } from '@/utils/tracks';
+import { Skeleton } from '@/components/molecules/skeleton/skeleton';
+import { SkeletonElement } from '@/components/atoms/skeleton/skeleton-element';
+import { useAppDispatch } from '@/hooks/reduxHooks';
+import { likeTrack } from '@/store/slices/liked-tracks-slice';
+import { nextRecommendation } from '@/store/slices/recommendations.slice';
 import { Like } from '@/assets/svg/like';
 import { NoLike } from '@/assets/svg/no-like';
 import styles from './track-list.module.scss';
-import { Skeleton } from '@/components/molecules/skeleton/skeleton';
-import { SkeletonElement } from '@/components/atoms/skeleton/skeleton-element';
 
 interface IProps {
-	tracks: ItemTrack[];
+	recommendations: ItemTrack[];
 }
 
-export const TrackList = ({ tracks }: IProps) => {
-	const [copyTracks, setCopyTracks] = useState(tracks);
+export const TrackList = ({ recommendations }: IProps) => {
+	const dispatch = useAppDispatch();
+
 	const [transform, setTransform] = useState<string | null>(null);
 	const { timeOut, clearTimeOut } = useTimeout();
 
@@ -25,9 +28,9 @@ export const TrackList = ({ tracks }: IProps) => {
 		typeof window !== 'undefined' ? document.body.clientWidth * 1.5 : 0;
 
 	const queryArtist = useQueryApi({
-		queryKey: ['Artist', copyTracks[0].track.id],
+		queryKey: ['Artist', recommendations[0].track.id],
 		service: () =>
-			SpotifyServices.getArtistByID(copyTracks[0].track.artists[0].id),
+			SpotifyServices.getArtistByID(recommendations[0].track.artists[0].id),
 		staleTime: oneHourInMS / 2,
 		cacheTime: oneHourInMS / 2,
 	});
@@ -36,7 +39,7 @@ export const TrackList = ({ tracks }: IProps) => {
 		setTransform(`translate(${moveOutWidth}px, -100px) rotate(-30deg)`);
 		await timeOut(320);
 		setTransform(null);
-		next();
+		next(true);
 		clearTimeOut();
 	};
 
@@ -44,22 +47,35 @@ export const TrackList = ({ tracks }: IProps) => {
 		setTransform(`translate(-${moveOutWidth}px, -100px) rotate(30deg)`);
 		await timeOut(320);
 		setTransform(null);
-		next();
+		4;
+		next(false);
 		clearTimeOut();
 	};
 
-	const next = () => {
-		setCopyTracks(actualTracks => removeFirstItem(actualTracks));
+	const next = (isLike: boolean) => {
+		if (isLike) {
+			const likedTrack = recommendations[0].track;
+			dispatch(
+				likeTrack({
+					name: likedTrack.name,
+					artists: likedTrack.artists.map(artist => artist.name),
+					audio: likedTrack.preview_url,
+					id: likedTrack.id,
+					image: likedTrack.album.images[0].url,
+				}),
+			);
+		}
+		dispatch(nextRecommendation());
 	};
 
 	return (
 		<>
-			<SwipeTracks tracks={copyTracks} next={next} transform={transform} />
+			<SwipeTracks tracks={recommendations} transform={transform} />
 			<section className={styles.info_wrapper}>
 				<div className={styles.info_title_container}>
-					<h3 className={styles.info_title}>{copyTracks[0].track.name}</h3>
+					<h3 className={styles.info_title}>{recommendations[0].track.name}</h3>
 					<time className={styles.date}>
-						{copyTracks[0].track.album.release_date.slice(0, 4)}
+						{recommendations[0].track.album.release_date.slice(0, 4)}
 					</time>
 				</div>
 				{queryArtist.data ? (
@@ -86,12 +102,12 @@ export const TrackList = ({ tracks }: IProps) => {
 				)}
 				<strong className={styles.info_subtitle}>Artist</strong>
 				<span className={styles.info_text}>
-					{copyTracks[0].track.artists[0].name}
+					{recommendations[0].track.artists[0].name}
 				</span>
 				<br />
 				<strong className={styles.info_subtitle}>Album</strong>
 				<span className={styles.info_text}>
-					{copyTracks[0].track.album.name}
+					{recommendations[0].track.album.name}
 				</span>
 				<div className={styles.buttons_wrapper}>
 					<button onClick={handleDisLike} className={styles.button}>
@@ -100,9 +116,7 @@ export const TrackList = ({ tracks }: IProps) => {
 					<button
 						onClick={handleLike}
 						className={`${styles.button} ${
-							tracks.length - 2 < copyTracks.length
-								? styles.button_wiggle
-								: null
+							50 - 2 < recommendations.length ? styles.button_wiggle : null
 						}`}>
 						<Like />
 					</button>

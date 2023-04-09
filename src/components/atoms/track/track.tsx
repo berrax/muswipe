@@ -1,9 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import styles from './track.module.scss';
 import { ITrack } from '@/interfaces/spotify.interface';
 import Hammer from 'hammerjs';
 import { ButtonPlayer } from '../button-player/button-player';
+import { useAppDispatch } from '@/hooks/reduxHooks';
+import { nextRecommendation } from '@/store/slices/recommendations.slice';
+import styles from './track.module.scss';
+import { likeTrack } from '@/store/slices/liked-tracks-slice';
 
 interface IStatus {
 	isMoving: boolean;
@@ -13,7 +16,7 @@ interface IStatus {
 const handlePan = (
 	elem: HTMLDivElement,
 	setIsMoving: (value: boolean) => void,
-	next: () => void,
+	next: (isLike: boolean) => void,
 	setStatus: (value: IStatus) => void,
 ) => {
 	const hammer = new Hammer(elem);
@@ -71,7 +74,7 @@ const handlePan = (
 				'px) rotate(' +
 				rotate +
 				'deg)';
-			next();
+			next(toX > 0);
 		}
 	});
 };
@@ -79,7 +82,6 @@ const handlePan = (
 interface IProps {
 	track: ITrack;
 	style?: React.CSSProperties;
-	next: () => void;
 	setStatus: (value: IStatus) => void;
 	transform: string | null;
 	isFirst: boolean;
@@ -88,18 +90,36 @@ interface IProps {
 export const Track = ({
 	track,
 	style,
-	next,
 	setStatus,
 	transform,
 	isFirst,
 }: IProps) => {
-	const ref = useRef<HTMLDivElement>(null);
+	const dispatch = useAppDispatch();
+	const ref = useRef<any>(null);
 	const [isMoving, setIsMoving] = useState(false);
+
+	const next = (isLike: boolean) => {
+		if (isLike) {
+			dispatch(
+				likeTrack({
+					name: track.name,
+					artists: track.artists.map(artist => artist.name),
+					audio: track.preview_url,
+					id: track.id,
+					image: track.album.images[0].url,
+				}),
+			);
+		}
+		dispatch(nextRecommendation());
+	};
 
 	useEffect(() => {
 		if (ref.current) {
 			handlePan(ref.current, setIsMoving, next, setStatus);
 		}
+		return () => {
+			ref.current = null;
+		};
 	}, []);
 
 	return (

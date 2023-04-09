@@ -5,7 +5,6 @@ import { ContentfulServices } from '@/services/contentful/contentful.services';
 import { PageLayout } from '@/components/templates/page-layout/page-layout';
 import { useTheme } from '@/hooks/useTheme';
 import { ITransversal } from '@/interfaces/contentful.interface';
-import { ItemTrack } from '@/interfaces/spotify.interface';
 import { HandEmoji } from '@/assets/svg/hand';
 import { useQueryApi } from '@/hooks/useQueryApi';
 import { SpotifyServices } from '@/services/spotify/spotify.services';
@@ -14,14 +13,18 @@ import { oneHourInMS } from '@/constants/globals';
 import { Skeleton } from '@/components/molecules/skeleton/skeleton';
 import styles from '@/styles/pages/swipe.module.scss';
 import { SkeletonElement } from '@/components/atoms/skeleton/skeleton-element';
-import { useAppSelector } from '@/hooks/reduxHooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
+import { useEffect } from 'react';
+import { initRecommendations } from '@/store/slices/recommendations.slice';
 
 interface IProps {
 	data: ITransversal;
 }
 const GLOBAL_PLAYLIST_ID = '37i9dQZEVXbMDoHDwVN2tF';
 export default function Swipe({ data }: IProps) {
+	const dispatch = useAppDispatch();
 	const user = useAppSelector(state => state.user.value);
+	const recommendations = useAppSelector(state => state.recommendations.value);
 	const { isDarkTheme } = useTheme();
 
 	const query = useQueryApi({
@@ -30,10 +33,11 @@ export default function Swipe({ data }: IProps) {
 		staleTime: oneHourInMS,
 	});
 
-	let tracks: ItemTrack[] = [];
-	if (query.data) {
-		tracks = query.data.tracks.items;
-	}
+	useEffect(() => {
+		if (query.data && !recommendations) {
+			dispatch(initRecommendations(query.data.tracks.items));
+		}
+	}, [query.data]);
 
 	return (
 		<PageLayout isDarkTheme={isDarkTheme}>
@@ -56,7 +60,11 @@ export default function Swipe({ data }: IProps) {
 					</h1>
 				</header>
 				<main className={styles.main}>
-					{query.data ? <TrackList tracks={tracks} /> : <SkeletonSwipe />}
+					{recommendations ? (
+						<TrackList recommendations={recommendations} />
+					) : (
+						<SkeletonSwipe />
+					)}
 				</main>
 			</div>
 		</PageLayout>

@@ -20,11 +20,11 @@ interface IStatus {
 
 interface IProps {
 	tracks: ItemTrack[];
-	next: () => void;
+
 	transform: string | null;
 }
 
-export const SwipeTracks = ({ tracks, next, transform }: IProps) => {
+export const SwipeTracks = ({ tracks, transform }: IProps) => {
 	const [status, setStatus] = useState<IStatus>({
 		isMoving: false,
 		isLove: false,
@@ -51,7 +51,6 @@ export const SwipeTracks = ({ tracks, next, transform }: IProps) => {
 						}px)`,
 						opacity: (10 - index) / 10,
 					}}
-					next={next}
 					setStatus={setStatus}
 					transform={index === 0 ? transform : null}
 					isFirst={index === 0}

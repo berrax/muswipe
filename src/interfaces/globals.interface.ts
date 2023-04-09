@@ -7,3 +7,11 @@ export interface ITheme {
 	isDarkTheme: boolean;
 	toggleTheme: () => void;
 }
+
+export interface ITrack {
+	id: string;
+	name: string;
+	artists: string[];
+	image: string;
+	audio: string;
+}
