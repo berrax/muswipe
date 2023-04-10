@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import type { ItemTrack } from '@/interfaces/spotify.interface';
-import { removeFirstItem } from '@/utils/tracks';
+import { removeFirstItem } from '@/utils/globals-utils';
 
 interface IRecommendationsState {
 	value: ItemTrack[] | null;
