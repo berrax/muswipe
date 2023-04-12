@@ -29,8 +29,6 @@
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
-		"jest.config.mjs",
-		"src/utils/globals-utils.test.ts"
 	],
 	"exclude": [
 		"node_modules"

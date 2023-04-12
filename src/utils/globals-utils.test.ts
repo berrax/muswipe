@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { removeFirstItem } from './globals-utils';
 
 describe('Remove first item from array', () => {
@@ -5,7 +6,7 @@ describe('Remove first item from array', () => {
 		expect(removeFirstItem).toBeInstanceOf(Function);
 	});
 	it('should throw an exception if no parameter is provided', () => {
-		expect(() => removeFirstItem_()).toThrow();
+		expect(() => removeFirstItem()).toThrow();
 	});
 	it('should throw an exception if the parameter is not an array', () => {
 		expect(() => removeFirstItem()).toThrow();

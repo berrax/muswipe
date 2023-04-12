@@ -1,7 +1,8 @@
+import { describe, it, expect, vi } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import useTimeout from './useTimeOut';
 
-jest.useFakeTimers();
+vi.useFakeTimers();
 
 describe('useTimeout', () => {
 	it('should resolve after specific time', async () => {
@@ -11,7 +12,7 @@ describe('useTimeout', () => {
 		const promise = timeOut(ms);
 
 		act(() => {
-			jest.advanceTimersByTime(ms);
+			vi.advanceTimersByTime(ms);
 		});
 		await expect(promise).resolves.toBeTruthy();
 	});
