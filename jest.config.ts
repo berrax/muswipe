@@ -1,7 +1,7 @@
 import type { Config } from '@jest/types';
 // Sync object
 const config: Config.InitialOptions = {
-	testEnvironment: 'jest-environment-jsdom',
+	testEnvironment: '@happy-dom/jest-environment',
 	transform: {
 		'^.+\\.ts?$': [
 			'ts-jest',
