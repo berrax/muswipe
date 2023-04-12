@@ -5,10 +5,10 @@ type TimeoutId = ReturnType<typeof setTimeout>;
 export default function useTimeout() {
 	const timeoutIdRef = useRef<TimeoutId | null>(null);
 
-	const timeOut = (ms: number): Promise<void> => {
+	const timeOut = (ms: number): Promise<boolean> => {
 		return new Promise(resolve => {
 			timeoutIdRef.current = setTimeout(() => {
-				resolve();
+				resolve(true);
 			}, ms);
 		});
 	};
