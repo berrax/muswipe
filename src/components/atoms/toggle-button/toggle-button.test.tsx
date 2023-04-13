@@ -8,7 +8,6 @@ describe('Toggle Button', () => {
 	});
 	afterEach(cleanup);
 
-	it('should render', () => {});
 	it('should have text', () => {
 		screen.getAllByText('Test');
 	});

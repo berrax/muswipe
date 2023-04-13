@@ -1,1 +1,57 @@
 @import '@/styles/variables.scss', '@/styles/mixins.scss';
+
+$width: 76px;
+$height: 36px;
+$diameter: 28px;
+
+.wrapper {
+	width: $width;
+	height: $height;
+	border-radius: calc($height / 2);
+	@include flex($justify: space-between);
+	padding-left: 8px;
+	padding-right: 8px;
+	will-change: background-color;
+	transition: background-color 0.2s ease-out;
+	overflow: hidden;
+	.img {
+		will-change: transform;
+		transition: transform 0.3s ease-in-out;
+	}
+}
+
+.toggle {
+	position: absolute;
+	width: $diameter;
+	height: $diameter;
+	border-radius: $rounded-full;
+	background-color: $color-light;
+	will-change: transform;
+	transition: transform 0.3s ease-out;
+	box-shadow: $shadow;
+}
+.on {
+	background-color: $color-purple;
+	.toggle {
+		transform: translateX(-2px);
+	}
+	.on_img {
+		transform: translateY(0px);
+	}
+	.off_img {
+		transform: translateY(-35px);
+	}
+}
+
+.off {
+	background-color: $color-green;
+	.toggle {
+		transform: translateX(calc(($width / 2) - 4px));
+	}
+	.on_img {
+		transform: translateY(35px);
+	}
+	.off_img {
+		transform: translateY(0px);
+	}
+}

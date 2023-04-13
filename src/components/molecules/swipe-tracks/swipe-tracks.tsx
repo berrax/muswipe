@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ItemTrack } from '@/interfaces/spotify.interface';
 import dynamic from 'next/dynamic';
 import { usePlayer } from '@/hooks/usePlayer';
-import { NoLike } from '@/assets/svg/no-like';
-import { Like } from '@/assets/svg/like';
+import { Like, NoLike } from '@/assets/svg/like-icons';
 import styles from './swipe-tracks.module.scss';
 
 const Track = dynamic(

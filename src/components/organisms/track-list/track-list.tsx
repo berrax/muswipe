@@ -10,8 +10,7 @@ import { SkeletonElement } from '@/components/atoms/skeleton/skeleton-element';
 import { useAppDispatch } from '@/hooks/reduxHooks';
 import { likeTrack } from '@/store/slices/liked-tracks-slice';
 import { nextRecommendation } from '@/store/slices/recommendations.slice';
-import { Like } from '@/assets/svg/like';
-import { NoLike } from '@/assets/svg/no-like';
+import { Like, NoLike } from '@/assets/svg/like-icons';
 import styles from './track-list.module.scss';
 
 interface IProps {

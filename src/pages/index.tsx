@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { ITransversal } from '@/interfaces/contentful.interface';
 import { useTheme } from '../hooks/useTheme';
 import Head from 'next/head';
+import { ToggleButton } from '@/components/atoms/toggle-button/toggle-button';
+import { Sun, Moon } from '@/assets/svg/toggle-theme-icons';
 
 export const getStaticProps: GetStaticProps = async () => {
 	try {
@@ -53,7 +55,15 @@ export default function Component({ data }: IProps) {
 				<button onClick={() => signIn('spotify')}>
 					{data.accionPrincipal}
 				</button>
-				<button onClick={toggleTheme}>Change Theme</button>
+				<br />
+				<br />
+				<br />
+				<ToggleButton
+					action={toggleTheme}
+					init={isDarkTheme}
+					offImg={<Sun />}
+					onImg={<Moon />}
+				/>
 			</div>
 		</>
 	);
