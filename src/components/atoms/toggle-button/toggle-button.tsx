@@ -22,7 +22,9 @@ export const ToggleButton = ({
 	return (
 		<button
 			onClick={handleClick}
-			className={`${styles.wrapper} ${isOn ? styles.on : styles.off}`}>
+			className={`${styles.wrapper} ${
+				isOn ? styles.onState : styles.offState
+			}`}>
 			{offImg && (
 				<div className={`${styles.img} ${styles.off_img}`}>{offImg}</div>
 			)}
