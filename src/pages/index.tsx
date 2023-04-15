@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import dynamic from 'next/dynamic';
 import { ContentfulServices } from '@/services/contentful/contentful.services';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -6,8 +7,17 @@ import { useEffect } from 'react';
 import { ITransversal } from '@/interfaces/contentful.interface';
 import { useTheme } from '../hooks/useTheme';
 import Head from 'next/head';
-import { ToggleButton } from '@/components/atoms/toggle-button/toggle-button';
 import { Sun, Moon } from '@/assets/svg/toggle-theme-icons';
+
+const ToggleButton = dynamic(
+	() =>
+		import('@/components/atoms/toggle-button/toggle-button').then(
+			e => e.ToggleButton,
+		),
+	{
+		ssr: false,
+	},
+);
 
 export const getStaticProps: GetStaticProps = async () => {
 	try {
@@ -60,7 +70,7 @@ export default function Component({ data }: IProps) {
 				<br />
 				<ToggleButton
 					action={toggleTheme}
-					init={isDarkTheme}
+					init={!isDarkTheme}
 					offImg={<Sun />}
 					onImg={<Moon />}
 				/>

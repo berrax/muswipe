@@ -30,7 +30,7 @@ $diameter: 28px;
 	transition: transform 0.3s ease-out;
 	box-shadow: $shadow;
 }
-.onState {
+.offState {
 	background-color: $color-purple;
 	.toggle {
 		transform: translateX(-2px);
@@ -43,7 +43,7 @@ $diameter: 28px;
 	}
 }
 
-.offState {
+.onState {
 	background-color: $color-green;
 	.toggle {
 		transform: translateX(calc(($width / 2) - 4px));

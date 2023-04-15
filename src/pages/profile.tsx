@@ -24,7 +24,7 @@ export default function Profile() {
 			<br />
 			<ToggleButton
 				action={toggleTheme}
-				init={isDarkTheme}
+				init={!isDarkTheme}
 				offImg={<Sun />}
 				onImg={<Moon />}
 			/>
