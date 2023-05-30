@@ -1,0 +1,182 @@
+@import '@/styles/variables.scss', '@/styles/mixins.scss';
+
+.center {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.title {
+	color: $color-purple;
+	text-align: center;
+	margin-top: 40px;
+	font-size: $font-title-base;
+}
+
+.container_image {
+	width: 100%;
+	margin: 10px auto;
+	@include flex();
+}
+
+.second_title {
+	margin-top: 20px;
+	width: 80%;
+	text-align: center;
+	font-size: $font-text-2xl;
+}
+
+.info_text {
+	font-size: $font-text-base;
+	margin-top: 20px;
+}
+
+.btn_principal {
+	width: auto;
+	height: 40px;
+	border-radius: $rounded-2xl;
+	font-weight: 500;
+	font-size: $font-text-base;
+	background-color: $color-green;
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.scroll {
+	@include flex($direction: column);
+	margin-top: 10px;
+	margin-bottom: 20px;
+	span {
+		font-weight: 500;
+		color: $color-gray-light;
+		margin-bottom: 10px;
+	}
+}
+.scroll_arrows {
+	height: 60px;
+	@include flex($direction: column, $justify: space-between);
+}
+
+.banner {
+	position: relative;
+	background-color: $color-pink;
+	border-radius: $rounded-xl;
+	width: 90%;
+	height: 80px;
+	@include flex();
+	padding-left: 20px;
+	padding-right: 20px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	p {
+		color: $color-light;
+		font-size: $font-text-sm;
+	}
+}
+.banner_inner {
+	position: absolute;
+	width: 95%;
+	height: 80%;
+	border-radius: $rounded-xl;
+	border: 2px dashed $color-light;
+	z-index: $z-floor;
+}
+.banner_img {
+	position: absolute;
+	transform: scaleX(-1);
+	top: -42px;
+	left: -30px;
+	z-index: $z-medium;
+}
+
+.footer_waves {
+	width: 100%;
+	height: 80px;
+	background-color: $color-green;
+	--mask: radial-gradient(102.16px at 50% 142.1px, #000 99%, #0000 101%)
+			calc(50% - 116px) 0/232px 100%,
+		radial-gradient(102.16px at 50% -84.1px, #0000 99%, #000 101%) 50% 58px/232px
+			100% repeat-x;
+	-webkit-mask: var(--mask);
+	mask: var(--mask);
+}
+
+.follow_us {
+	position: relative;
+	width: 100%;
+	padding-right: 40px;
+	@include flex($direction: column, $align: end);
+	margin-top: 20px;
+	span {
+		font-weight: 500;
+		margin-bottom: 10px;
+	}
+	img {
+		margin-bottom: 5px;
+	}
+	.img_music_notes {
+		position: absolute;
+		top: -30px;
+		left: -100px;
+		transform: scale(0.65);
+	}
+}
+
+.footer {
+	width: 100%;
+	background-color: $color-green;
+	height: 250px;
+	padding-top: 20px;
+}
+.footer_sectionOne {
+	width: 100%;
+	@include flex();
+}
+
+.footer_appstores {
+	width: 50%;
+	padding-left: 30px;
+	span {
+		display: block;
+		width: 100%;
+		font-weight: 500;
+		color: $color-dark;
+	}
+	img {
+		margin-top: 5px;
+		margin-left: 5px;
+	}
+}
+.footer_toggle {
+	width: 50%;
+	@include flex();
+}
+
+.footer_sectionTwo {
+	position: relative;
+	width: 100%;
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	margin-top: 20px;
+	@include flex($align: left, $direction: column);
+	span {
+		font-weight: 500;
+		color: $color-dark;
+	}
+	li {
+		font-size: $font-text-sm;
+		color: $color-dark;
+	}
+}
+.cr {
+	position: absolute;
+	bottom: 0;
+	right: 30px;
+	font-weight: 500;
+	color: $color-dark;
+	font-size: $font-text-sm;
+}

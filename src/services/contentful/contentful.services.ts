@@ -41,7 +41,7 @@ function queryTransversal(id: string) {
           nombre
           titulo
           subtitulo
-          descricion
+          descripcion
           descripcionSecundaria
           imagenesCollection{
             items{

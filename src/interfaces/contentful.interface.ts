@@ -37,7 +37,7 @@ export interface ISubTransversal {
 	nombre: string;
 	titulo?: string;
 	subtitulo?: string;
-	descricion?: string;
+	descripcion?: string;
 	descripcionSecundaria?: string;
 	imagenesCollection?: { items: image[] };
 	accionPrimaria?: string;

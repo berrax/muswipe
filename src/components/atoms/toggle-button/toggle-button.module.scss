@@ -8,6 +8,7 @@ $diameter: 28px;
 	width: $width;
 	height: $height;
 	border-radius: calc($height / 2);
+	outline: 2px solid $color-light;
 	@include flex($justify: space-between);
 	padding-left: 8px;
 	padding-right: 8px;
