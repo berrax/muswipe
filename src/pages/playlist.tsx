@@ -1,6 +1,8 @@
+import Image from 'next/image';
 import { PageLayout } from '@/components/templates/page-layout/page-layout';
 import { useTheme } from '@/hooks/useTheme';
 import { useAppSelector } from '@/hooks/reduxHooks';
+import styles from '../styles/pages/playlist.module.scss';
 
 export default function Playlist() {
 	const user = useAppSelector(state => state.user.value);
@@ -11,16 +13,22 @@ export default function Playlist() {
 	}
 
 	return (
-		<PageLayout isDarkTheme={isDarkTheme}>
-			<h1>Playlist</h1>
-			<p>Signed in as {user?.email}</p>
-			<div>
-				<ul>
-					{likedTracks.map(track => (
-						<li key={track.name}>{track.name}</li>
-					))}
-				</ul>
+		<PageLayout isDarkTheme={isDarkTheme} isGradientBG>
+			<div className={styles.header}>
+				<h1>Tus Canciones </h1>
+				<Image
+					src={require('@/assets/img/fire-heart.png')}
+					alt="hear icon"
+					width={35}
+					height={35}
+				/>
 			</div>
+
+			<ul className={styles.track_list}>
+				{likedTracks.map(track => (
+					<li key={track.name}>{track.name}</li>
+				))}
+			</ul>
 		</PageLayout>
 	);
 }

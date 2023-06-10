@@ -10,3 +10,13 @@
 		padding: 20px;
 	}
 }
+
+.gradient {
+	background: $color-gray-light;
+	background: linear-gradient(
+		135deg,
+		rgba(202, 224, 98, 0.2) 0%,
+		rgba(238, 72, 120, 0.2) 50%,
+		rgba(114, 72, 238, 0.2) 100%
+	);
+}
