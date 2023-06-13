@@ -72,6 +72,7 @@ function Auth({ children }: IPropsChildren) {
 					name: query.data?.display_name,
 					email: query.data?.email,
 					image: query.data?.images?.[0].url,
+					username: query.data?.id,
 				}),
 			);
 		}

@@ -14,4 +14,5 @@ export interface ITrack {
 	artists: string[];
 	image: string;
 	audio: string;
+	duration_ms: number;
 }

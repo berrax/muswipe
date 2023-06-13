@@ -61,6 +61,7 @@ export const TrackList = ({ recommendations }: IProps) => {
 					audio: likedTrack.preview_url,
 					id: likedTrack.id,
 					image: likedTrack.album.images[0].url,
+					duration_ms: likedTrack.duration_ms,
 				}),
 			);
 		}

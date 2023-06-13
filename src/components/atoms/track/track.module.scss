@@ -42,3 +42,10 @@
 	box-shadow: $shadow;
 	border-radius: $rounded-4xl;
 }
+
+.player_container {
+	position: absolute;
+	z-index: $z-top;
+	bottom: 8px;
+	left: 12px;
+}

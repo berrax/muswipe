@@ -107,6 +107,7 @@ export const Track = ({
 					audio: track.preview_url,
 					id: track.id,
 					image: track.album.images[0].url,
+					duration_ms: track.duration_ms,
 				}),
 			);
 		}
@@ -127,7 +128,11 @@ export const Track = ({
 			ref={ref}
 			style={{ ...style, transform: transform ? transform : style?.transform }}
 			className={`${isMoving ? styles.moving : null} ${styles.card}`}>
-			{isFirst && <ButtonPlayer audio={track.preview_url} />}
+			{isFirst && (
+				<div className={styles.player_container}>
+					<ButtonPlayer audio={track.preview_url} />
+				</div>
+			)}
 			<Image
 				src={track.album.images[0].url}
 				alt="song album picture"

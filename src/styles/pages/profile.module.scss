@@ -1,0 +1,50 @@
+@import '@/styles/variables.scss', '@/styles/mixins.scss';
+
+.wrapper {
+	@include flex($direction: column);
+	padding-top: $space-24;
+	h1 {
+		font-size: $font-title-sm;
+	}
+}
+
+.profile_img {
+	width: 100px;
+	height: 100px;
+	border-radius: $rounded-full;
+}
+
+.logout {
+	color: $color-pink;
+	font-size: $font-text-sm;
+	margin: $space-24;
+}
+
+.container_darkmode {
+	width: 100%;
+	padding-left: 5%;
+	padding-right: 5%;
+	@include flex($justify: space-between);
+	span {
+		font-weight: $font-weight-bold;
+	}
+}
+
+.list {
+	width: 100%;
+	@include flex($justify: space-between);
+	margin: $space-24 0;
+	li {
+		width: 33.3%;
+		text-align: center;
+		@include flex($direction: column);
+	}
+}
+
+.list_one {
+	font-size: $font-title-sm;
+	font-weight: $font-weight-bold;
+}
+.list_two {
+	font-size: $font-text-sm;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { SkeletonShimmer } from '@/components/atoms/skeleton/skeleton-shimmer/skeleton-shimmer';
-import { IPropsChildren } from '../../../interfaces/globals.interface';
+import { IPropsChildren } from '@/interfaces/globals.interface';
 import styles from './skeleton.module.scss';
 
 interface IProps extends Partial<IPropsChildren> {

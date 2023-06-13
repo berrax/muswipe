@@ -1,7 +1,7 @@
 import SpotifyProvider from 'next-auth/providers/spotify';
 import axios from 'axios';
 import { TOKEN_ENDPOINT } from '@/constants/spotify-api-endpoints';
-import { NextAuthOptions, TokenSet } from 'next-auth';
+import { NextAuthOptions } from 'next-auth';
 import NextAuth from 'next-auth/next';
 
 const client_id = process.env.SPOTIFY_CLIENT_ID;

@@ -1,10 +1,6 @@
 @import '@/styles/variables.scss', '@/styles/mixins.scss';
 
 .btn_player {
-	position: absolute;
-	z-index: $z-top;
-	bottom: 8px;
-	left: 12px;
 	@include flex($align: baseline);
 	padding: 10px;
 	div {

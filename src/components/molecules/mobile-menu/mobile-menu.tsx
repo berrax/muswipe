@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { HomeIcon } from '@/assets/icons/home-icon';
-import { PlaylistIcon } from '../../../assets/icons/playlist-icon';
+import { PlaylistIcon } from '@/assets/icons/playlist-icon';
 import { ProfileIcon } from '@/assets/icons/profile-icon';
 import styles from './mobile-menu.module.scss';
 

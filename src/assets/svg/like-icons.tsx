@@ -1,4 +1,4 @@
-import { color_purple, color_light, color_pink } from '../../constants/globals';
+import { color_purple, color_light, color_pink } from '@/constants/globals';
 
 export const Like = () => {
 	return (

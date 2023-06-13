@@ -1,0 +1,22 @@
+@import '@/styles/variables.scss', '@/styles/mixins.scss';
+
+.play_icon {
+	position: absolute;
+	margin-left: 2px;
+	background-color: transparent;
+	width: 20px;
+	height: 22px;
+	border-radius: $rounded;
+	border-style: solid;
+	border-width: 10px 0 10px 20px;
+	border-color: transparent transparent transparent #f9f9f9ab;
+	cursor: pointer;
+	transition: 100ms border-width ease;
+}
+
+.play_icon__pause {
+	border-color: transparent transparent transparent $color-purple;
+	border-style: double;
+	border-width: 0 0 0 20px;
+	margin-left: 0;
+}

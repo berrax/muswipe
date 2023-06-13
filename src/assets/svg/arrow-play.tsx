@@ -1,4 +1,4 @@
-import { color_light, color_gray_light } from '../../constants/globals';
+import { color_light, color_gray_light } from '@/constants/globals';
 
 export const ArrowPlay = () => {
 	return (

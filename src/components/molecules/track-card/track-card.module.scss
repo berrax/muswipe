@@ -1,0 +1,69 @@
+@import '@/styles/variables.scss', '@/styles/mixins.scss';
+
+.track_item {
+	width: 100%;
+	height: 64px;
+	border-radius: $rounded-lg;
+	box-shadow: $shadow;
+	background-color: $color-light;
+	margin-top: 12px;
+
+	@include flex($justify: flex-start);
+}
+.bg_dark {
+	background-color: $color-dark;
+}
+
+.index {
+	font-size: $font-text-sm;
+	font-weight: $font-weight-medium;
+	width: 35px;
+	text-align: center;
+}
+
+.image_container {
+	width: 46px;
+	height: 46px;
+	margin-right: $space-12;
+	position: relative;
+	@include flex();
+}
+
+.cover_img {
+	border-radius: $rounded-md;
+}
+
+.container {
+	width: 50%;
+	@include flex($direction: column, $align: flex-start);
+	margin-right: $space-8;
+}
+
+.name {
+	width: 100%;
+	font-weight: $font-weight-bold;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.artist {
+	font-size: $font-text-sm;
+	color: $color-gray-dark;
+}
+.artist_dark {
+	color: $color-gray-light;
+}
+.time {
+	font-weight: $font-weight-bold;
+	font-size: $font-text-sm;
+	color: $color-gray-light;
+	width: 40px;
+}
+.time_container {
+	@include flex($justify: space-between);
+}
+.icon_container {
+	width: 20px;
+	height: 20px;
+	margin-left: $space-12;
+}
