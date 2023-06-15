@@ -7,6 +7,7 @@ import { useAppDispatch } from '@/hooks/reduxHooks';
 import { nextRecommendation } from '@/store/slices/recommendations.slice';
 import styles from './track.module.scss';
 import { likeTrack } from '@/store/slices/liked-tracks-slice';
+import { addToDiscovered } from '@/store/slices/user-slice';
 
 interface IStatus {
 	isMoving: boolean;
@@ -111,6 +112,7 @@ export const Track = ({
 				}),
 			);
 		}
+		dispatch(addToDiscovered());
 		dispatch(nextRecommendation());
 	};
 
