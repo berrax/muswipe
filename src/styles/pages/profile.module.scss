@@ -5,6 +5,7 @@
 	padding-top: $space-24;
 	h1 {
 		font-size: $font-title-sm;
+		margin-top: $space-12;
 	}
 }
 
@@ -16,7 +17,7 @@
 
 .logout {
 	color: $color-pink;
-	font-size: $font-text-sm;
+	font-size: $font-text-base;
 	margin: $space-24;
 }
 
@@ -24,16 +25,19 @@
 	width: 100%;
 	padding-left: 5%;
 	padding-right: 5%;
+	margin-top: $space-48;
+	margin-bottom: $space-48;
 	@include flex($justify: space-between);
 	span {
-		font-weight: $font-weight-bold;
+		font-weight: $font-weight-semibold;
 	}
 }
 
 .list {
 	width: 100%;
 	@include flex($justify: space-between);
-	margin: $space-24 0;
+	margin-top: $space-48;
+	margin-bottom: $space-48;
 	li {
 		width: 33.3%;
 		text-align: center;
@@ -47,4 +51,48 @@
 }
 .list_two {
 	font-size: $font-text-sm;
+}
+
+.buy_pro {
+	width: 120%;
+	padding: 10px 15%;
+	height: 80px;
+	background-color: $color-light;
+	box-shadow: $shadow-xl;
+	margin: $space-32 0;
+	@include flex($justify: space-between);
+
+	div {
+		width: 70%;
+		span {
+			display: block;
+			width: 100%;
+			font-weight: $font-weight-semibold;
+			margin-bottom: $space-4;
+		}
+	}
+}
+.buy_pro_bg_dark {
+	background-color: $color-purple;
+}
+.color_dark {
+	color: $color-dark;
+}
+.color_purple {
+	color: $color-purple;
+}
+
+.btn_buy_pro {
+	font-weight: $font-weight-bold;
+	padding: 8px 18px;
+	border-radius: $rounded-4xl;
+	font-size: $font-text-sm;
+}
+.btn_light {
+	background-color: $color-purple;
+	color: $color-light;
+}
+.btn_dark {
+	background-color: $color-green;
+	color: $color-dark;
 }

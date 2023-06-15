@@ -34,8 +34,10 @@ interface IProps {
 export default function Profile({ data }: IProps) {
 	const user = useAppSelector(state => state.user.value);
 	const { isDarkTheme, toggleTheme } = useTheme();
+	const likedTracks = useAppSelector(state => state.likedTracks.value);
 
 	const options = data.otro!.split('%');
+	const listData = [user.discoverd, likedTracks.length, 2];
 
 	return (
 		<PageLayout isDarkTheme={isDarkTheme}>
@@ -43,8 +45,8 @@ export default function Profile({ data }: IProps) {
 				<Image
 					alt="profile image"
 					src={user.image || data.imagenPrincipal?.url!}
-					width={100}
-					height={100}
+					width={120}
+					height={120}
 					className={styles.profile_img}
 				/>
 
@@ -52,8 +54,8 @@ export default function Profile({ data }: IProps) {
 				<span>@{user.username}</span>
 				<ul className={styles.list}>
 					{options.map((elem, i) => (
-						<li>
-							<span className={styles.list_one}>{i}</span>
+						<li key={i}>
+							<span className={styles.list_one}>{listData[i]}</span>
 							<span className={styles.list_two}>{elem}</span>
 						</li>
 					))}
@@ -67,8 +69,32 @@ export default function Profile({ data }: IProps) {
 						onImg={<Moon />}
 					/>
 				</div>
+				<div
+					className={`${styles.buy_pro} ${
+						isDarkTheme && styles.buy_pro_bg_dark
+					}`}>
+					<div>
+						<span>{data.tituloSecundario}</span>
+						<span>
+							{data.descripcionPrincipal}
+							&nbsp;&nbsp;
+							<b
+								className={
+									isDarkTheme ? styles.color_dark : styles.color_purple
+								}>
+								{data.descripcionSecundaria}
+							</b>
+						</span>
+					</div>
+					<button
+						className={`${styles.btn_buy_pro} ${
+							isDarkTheme ? styles.btn_dark : styles.btn_light
+						}`}>
+						{data.accionSecundaria}
+					</button>
+				</div>
 				<button onClick={() => signOut()} className={styles.logout}>
-					Sign out
+					{data.accionPrincipal}
 				</button>
 			</div>
 		</PageLayout>

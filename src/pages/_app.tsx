@@ -18,7 +18,7 @@ import { setUser } from '@/store/slices/user-slice';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 
 const poppins = Poppins({
-	weight: ['400', '500', '700'],
+	weight: ['400', '500', '600', '700'],
 	style: ['normal'],
 	subsets: ['latin'],
 });
@@ -73,6 +73,8 @@ function Auth({ children }: IPropsChildren) {
 					email: query.data?.email,
 					image: query.data?.images?.[0].url,
 					username: query.data?.id,
+					list: 1,
+					discoverd: 0,
 				}),
 			);
 		}

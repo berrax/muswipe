@@ -10,6 +10,7 @@ import { SkeletonElement } from '@/components/atoms/skeleton/skeleton-element';
 import { useAppDispatch } from '@/hooks/reduxHooks';
 import { likeTrack } from '@/store/slices/liked-tracks-slice';
 import { nextRecommendation } from '@/store/slices/recommendations.slice';
+import { addToDiscovered } from '@/store/slices/user-slice';
 import { Like, NoLike } from '@/assets/svg/like-icons';
 import styles from './track-list.module.scss';
 
@@ -65,6 +66,7 @@ export const TrackList = ({ recommendations }: IProps) => {
 				}),
 			);
 		}
+		dispatch(addToDiscovered());
 		dispatch(nextRecommendation());
 	};
 

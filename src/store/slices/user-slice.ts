@@ -18,7 +18,11 @@ export const userSlice = createSlice({
 		resetUser: state => {
 			state.value = initialState.value;
 		},
+		addToDiscovered: state => {
+			const discovered = state.value.discoverd || 0;
+			state.value = { ...state.value, discoverd: discovered + 1 };
+		},
 	},
 });
 
-export const { setUser, resetUser } = userSlice.actions;
+export const { setUser, resetUser, addToDiscovered } = userSlice.actions;
